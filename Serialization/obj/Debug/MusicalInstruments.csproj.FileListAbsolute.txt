@@ -1,0 +1,16 @@
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\bin\Debug\Serialization.exe.config
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\MusicalInstruments.csprojResolveAssemblyReference.cache
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\MainWindow.g.cs
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\App.g.cs
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Serialization_MarkupCompile.cache
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Serialization_MarkupCompile.lref
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\bin\Debug\Serialization.exe
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\bin\Debug\Serialization.pdb
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\MainWindow.baml
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Serialization.g.resources
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Serialization.Properties.Resources.resources
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\MusicalInstruments.csproj.GenerateResource.Cache
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Serialization.exe
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Serialization.pdb
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Services\Templates\BaseWindow.g.cs
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Services\Templates\BaseWindow.baml
