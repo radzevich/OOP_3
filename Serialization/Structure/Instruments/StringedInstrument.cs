@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Serialization.Structure
+namespace Serialization.Structure.Instrument
 {
     class StringedInstrument : MusicalInstrument
     {

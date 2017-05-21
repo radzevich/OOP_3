@@ -34,46 +34,46 @@
       <FileName>Serializator\Serializator.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Serialization.Structure.Country" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="Serialization.Structure.Descriptions.Country" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="7.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Structure\Descriptions\Country.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Serialization.Structure.Guitar">
+  <Class Name="Serialization.Structure.Instrument.Guitar">
     <Position X="3.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Structure\Guitar.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Structure\Instruments\Guitar.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Serialization.Structure.KeyboardInstrument" Collapsed="true">
+  <Class Name="Serialization.Structure.Instrument.KeyboardInstrument" Collapsed="true">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Structure\KeyboardInstrument.cs</FileName>
+      <FileName>Structure\Instruments\KeyboardInstrument.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Serialization.Structure.Model" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="Serialization.Structure.Descriptions.Model" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="6" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Structure\Descriptions\Model.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Serialization.Structure.StringedInstrument">
+  <Class Name="Serialization.Structure.Instrument.StringedInstrument">
     <Position X="3.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Structure\StringedInstrument.cs</FileName>
+      <FileName>Structure\Instruments\StringedInstrument.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Serialization.Structure.Synthesizer" Collapsed="true">
+  <Class Name="Serialization.Structure.Instrument.Synthesizer" Collapsed="true">
     <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Structure\Synthesizer.cs</FileName>
+      <FileName>Structure\Instruments\Synthesizer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

@@ -52,12 +52,14 @@ namespace Serialization.Services
             return editingFields;
         }
 
+
         private static void addControlToGrid(Grid grid, Control control, TextBlock text)
         {
             grid.RowDefinitions.Add(new RowDefinition());
             Grid.SetRow(text, grid.RowDefinitions.Count - 1);
             Grid.SetRow(control, grid.RowDefinitions.Count - 1);
         }
+
 
         private static void initializeComboBoxFromFile(ComboBox comboBox, string path)
         {
@@ -68,6 +70,7 @@ namespace Serialization.Services
                 comboBox.Items.Add(line);
             }
         }
+
 
         private static void initializeComboBoxFromFile(ComboBox comboBox, string path, string selectedItem)
         {

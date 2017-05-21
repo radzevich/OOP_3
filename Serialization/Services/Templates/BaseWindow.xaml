@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Serialization.Services.Templates"
         mc:Ignorable="d"
-        Title="BaseWindow" Height="300" Width="1000">
+        Title="BaseWindow" Height="400" Width="1000" >
     <Window.Resources>
         <Style TargetType="ComboBoxItem">
             <Setter Property="Margin" Value="1"/>
@@ -25,6 +25,7 @@
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="Margin" Value="2" />
+            <Setter Property="Height" Value="20" />
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="2" />
@@ -38,18 +39,12 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="EditField" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <Grid x:Name="EditField" Grid.Column="0" Height="auto">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-
-            <TextBlock Text="Инструмент" />
-            <ComboBox x:Name="ObjectTypeComboBox" Grid.Column="1"/>
         </Grid>
-        <ListBox x:Name="ObjectListBox" Margin="2" Grid.Column="1"/>
+        <ListBox x:Name="ObjectListBox" Margin="2" Grid.Column="1" Height="auto"/>
     </Grid>
 </Window>

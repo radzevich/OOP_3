@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Serialization.Structure.Description;
+using Serialization.Structure.Descriptions;
 
 namespace Serialization.Services.Templates
 {
@@ -20,7 +20,8 @@ namespace Serialization.Services.Templates
     /// </summary>
     public partial class BaseWindow : Window
     {
-        public Dictionary<ComboBox, Description> f { get; set; }
+        public Dictionary<ComboBox, Description> fields { get; set; }
+
         public BaseWindow()
         {
             InitializeComponent();

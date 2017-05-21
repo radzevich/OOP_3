@@ -55,30 +55,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\FileReader.cs" />
     <Compile Include="Serializator\Serializator.cs" />
     <Compile Include="Services\Templates\BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\WindowFactory.cs" />
-    <Compile Include="Structure\Acoustic.cs" />
-    <Compile Include="Structure\GuitarOptions\AdditionalString.cs" />
-    <Compile Include="Structure\Bass.cs" />
+    <Compile Include="Structure\Instruments\Acoustic.cs" />
+    <Compile Include="Structure\Instruments\Bass.cs" />
     <Compile Include="Structure\Descriptions\Company.cs" />
-    <Compile Include="Structure\GuitarOptions\Belt.cs" />
-    <Compile Include="Structure\GuitarOptions\Case.cs" />
-    <Compile Include="Structure\GuitarOptions\FloydRose.cs" />
-    <Compile Include="Structure\GuitarConcrete.cs" />
     <Compile Include="Structure\Descriptions\Country.cs" />
-    <Compile Include="Structure\Electric.cs" />
-    <Compile Include="Structure\Guitar.cs" />
+    <Compile Include="Structure\Instruments\Electric.cs" />
+    <Compile Include="Structure\Instruments\Guitar.cs" />
     <Compile Include="Structure\Descriptions\Description.cs" />
-    <Compile Include="Structure\GuitarDecorator.cs" />
-    <Compile Include="Structure\KeyboardInstrument.cs" />
-    <Compile Include="Structure\MusicalInstrument.cs" />
+    <Compile Include="Structure\Instruments\KeyboardInstrument.cs" />
+    <Compile Include="Structure\Instruments\MusicalInstrument.cs" />
     <Compile Include="Structure\Descriptions\Model.cs" />
-    <Compile Include="Structure\GuitarOptions\Pickup.cs" />
-    <Compile Include="Structure\StringedInstrument.cs" />
-    <Compile Include="Structure\Synthesizer.cs" />
+    <Compile Include="Structure\Instruments\StringedInstrument.cs" />
+    <Compile Include="Structure\Instruments\Synthesizer.cs" />
     <Compile Include="Structure\Descriptions\Material.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +118,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Structure\Descriptions\Libs\common\Countries.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Structure\Descriptions\Libs\guitar\Companies.txt" />
+    <Resource Include="Structure\Descriptions\Libs\guitar\Materials.txt" />
+    <Resource Include="Structure\Descriptions\Libs\guitar\Models.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Structure\Descriptions\Libs\synthesizer\Companies.txt" />
+    <Resource Include="Structure\Descriptions\Libs\synthesizer\Materials.txt" />
+    <Resource Include="Structure\Descriptions\Libs\synthesizer\Models.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

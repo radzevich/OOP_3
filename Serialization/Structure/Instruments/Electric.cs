@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Serialization.Structure
+namespace Serialization.Structure.Instrument
 {
     class Electric : Guitar
     {
