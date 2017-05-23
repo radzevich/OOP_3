@@ -23,6 +23,9 @@ namespace Serialization
     public partial class MainWindow : Window
     {
         private InstrumentFactory instrumentFactory;
+        private WindowFactory windowFactory;
+
+        public delegate void onTypeSelectEventHandler(object sender, SelectionChangedEventArgs e);
 
         private List<MusicalInstrument> instrumentList;
 
@@ -33,6 +36,7 @@ namespace Serialization
             InitializeComponent();
 
             instrumentFactory = new InstrumentFactory();
+            windowFactory = new WindowFactory();
             instrumentList = new List<MusicalInstrument>();
         }
 
@@ -40,7 +44,8 @@ namespace Serialization
         {
             var instrument = instrumentFactory.create(name);
 
-            window = WindowFactory.create(instrument);
+            window = windowFactory.create(instrument, comboBox_onTypeSelect);
+                       
         }
 
         private void addNewInstrument()
@@ -48,11 +53,11 @@ namespace Serialization
             addNewInstrument(instrumentFactory.getInstrumentNameCollection()[0]);
         }
 
-        public void instrumentType_onSelect(object sender, string selectedInstrumentName)
+        public void comboBox_onTypeSelect(object sender, SelectionChangedEventArgs e)
         {
-            window.Close();
+            addNewInstrument((string)e.AddedItems[0]);
 
-            addNewInstrument(selectedInstrumentName);
+            window.Close();
         }
     }
 }

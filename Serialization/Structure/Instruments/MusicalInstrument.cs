@@ -7,7 +7,7 @@ using Serialization.Structure.Descriptions;
 
 namespace Serialization.Structure.Instrument
 {
-    abstract class MusicalInstrument : Description
+    public abstract class MusicalInstrument : Description
     {  
         public Company company { get; protected set; }
         public Country country { get; protected set; }

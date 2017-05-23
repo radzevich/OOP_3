@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Serialization.Services;
 using Serialization.Structure.Instrument;
 using Serialization.Services.Templates;
-using Serialization.Structure.Descriptions;
+using static Serialization.MainWindow;
 
 namespace Serialization.Services
 {
-    static class WindowFactory
+    public class WindowFactory
     {
-        public static Window create(MusicalInstrument instrument)
+        public Window create(MusicalInstrument instrument, onTypeSelectEventHandler handler)
         {
             var window = new BaseWindow();
             var controlList = addControlsFromDescription(window.EditField, instrument);
@@ -25,12 +19,12 @@ namespace Serialization.Services
                 window.fields.Add((ComboBox)controlList[i], instrument.description[i]);
             }
 
-            (ComboBox)controlList[0].
+            ((ComboBox)controlList[0]).SelectionChanged += new SelectionChangedEventHandler(handler);
             return window;
         }
         
 
-        private static List<Control> addControlsFromDescription(Grid grid, MusicalInstrument instrument)
+        private List<Control> addControlsFromDescription(Grid grid, MusicalInstrument instrument)
         {
             var editingFields = new List<Control>();
             
@@ -58,7 +52,7 @@ namespace Serialization.Services
         }
 
 
-        private static void addControlToGrid(Grid grid, Control control, TextBlock text)
+        private void addControlToGrid(Grid grid, Control control, TextBlock text)
         {
             grid.RowDefinitions.Add(new RowDefinition());
 
@@ -72,7 +66,7 @@ namespace Serialization.Services
         }
 
 
-        private static void initializeComboBoxFromFile(ComboBox comboBox, string path)
+        private void initializeComboBoxFromFile(ComboBox comboBox, string path)
         {
             var reader = new FileReader();
 
@@ -83,7 +77,7 @@ namespace Serialization.Services
         }
 
 
-        private static void initializeComboBoxFromFile(ComboBox comboBox, string path, string selectedItem)
+        private void initializeComboBoxFromFile(ComboBox comboBox, string path, string selectedItem)
         {
             var reader = new FileReader();
 
