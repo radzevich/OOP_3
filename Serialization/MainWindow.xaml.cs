@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Serialization.Structure.Instrument;
+using Serialization.Services;
 
 namespace Serialization
 {
@@ -20,9 +22,37 @@ namespace Serialization
     /// </summary>
     public partial class MainWindow : Window
     {
+        private InstrumentFactory instrumentFactory;
+
+        private List<MusicalInstrument> instrumentList;
+
+        private Window window;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            instrumentFactory = new InstrumentFactory();
+            instrumentList = new List<MusicalInstrument>();
+        }
+
+        private void addNewInstrument(string name)
+        {
+            var instrument = instrumentFactory.create(name);
+
+            window = WindowFactory.create(instrument);
+        }
+
+        private void addNewInstrument()
+        {
+            addNewInstrument(instrumentFactory.getInstrumentNameCollection()[0]);
+        }
+
+        public void instrumentType_onSelect(object sender, string selectedInstrumentName)
+        {
+            window.Close();
+
+            addNewInstrument(selectedInstrumentName);
         }
     }
 }

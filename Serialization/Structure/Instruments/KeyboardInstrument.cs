@@ -7,7 +7,7 @@ using Serialization.Structure.Descriptions;
 
 namespace Serialization.Structure.Instrument
 {
-    class KeyboardInstrument : MusicalInstrument
+    abstract class KeyboardInstrument : MusicalInstrument
     {
         public KeyboardInstrument(string name) : base(name)
         {

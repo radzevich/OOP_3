@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Serialization.Structure.Descriptions
+namespace Serialization.Structure
 {
     public class Description
     {
@@ -8,18 +9,7 @@ namespace Serialization.Structure.Descriptions
         private string value;
         private string libPath;
 
-        public virtual string Name
-        {
-            get { return name; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException();
-                }
-                name = value;
-            }
-        }
+        public virtual List<Description> description { get; }
 
         public virtual string LibPath
         {
@@ -39,9 +29,20 @@ namespace Serialization.Structure.Descriptions
             }
         }
 
+        public virtual string Name
+        {
+            get { return name; }
+            set
+            {
+                this.name = value;
+            }
+        }
+
         public Description(string name)
         {
-            Name = name;
+            this.name = name;
+
+            description.Add(this);
         }
     }
 }

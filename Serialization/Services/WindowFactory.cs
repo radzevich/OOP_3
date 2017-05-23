@@ -15,16 +15,17 @@ namespace Serialization.Services
 {
     static class WindowFactory
     {
-        static public Window createWindow(MusicalInstrument instrument)
+        public static Window create(MusicalInstrument instrument)
         {
             var window = new BaseWindow();
             var controlList = addControlsFromDescription(window.EditField, instrument);
 
             for (int i = 0; i < controlList.Count; i++)
             {
-                window.fields.Add((ComboBox)controlList[i], instrument.Description[i]);
+                window.fields.Add((ComboBox)controlList[i], instrument.description[i]);
             }
 
+            (ComboBox)controlList[0].
             return window;
         }
         
@@ -33,22 +34,26 @@ namespace Serialization.Services
         {
             var editingFields = new List<Control>();
             
-            for (int i = 0; i < instrument.Description.Count; i++)
+            for (int i = 0; i < instrument.description.Count; i++)
             {
                 var comboBox = new ComboBox();
                 var textBlock = new TextBlock();
 
-                textBlock.Text = instrument.Description[i].Name;
-                initializeComboBoxFromFile(comboBox, instrument.Description[i].LibPath);
+                textBlock.Text = instrument.description[i].Name;
 
-                Grid.SetColumn(textBlock, 0);
-                Grid.SetColumn(comboBox, 1);
-                Grid.SetRow(textBlock, i);
-                Grid.SetRow(comboBox, i);
+                if (instrument.description[i].Value != null)
+                {
+                    initializeComboBoxFromFile(comboBox, instrument.description[i].LibPath, instrument.description[i].Value);
+                }
+                else
+                {
+                    initializeComboBoxFromFile(comboBox, instrument.description[i].LibPath);
+                }
 
                 addControlToGrid(grid, comboBox, textBlock);
                 editingFields.Add(comboBox);
             }
+
             return editingFields;
         }
 
@@ -56,8 +61,14 @@ namespace Serialization.Services
         private static void addControlToGrid(Grid grid, Control control, TextBlock text)
         {
             grid.RowDefinitions.Add(new RowDefinition());
+
+            Grid.SetColumn(text, 0);
+            Grid.SetColumn(control, 1);
             Grid.SetRow(text, grid.RowDefinitions.Count - 1);
             Grid.SetRow(control, grid.RowDefinitions.Count - 1);
+
+            grid.Children.Add(text);
+            grid.Children.Add(control);            
         }
 
 

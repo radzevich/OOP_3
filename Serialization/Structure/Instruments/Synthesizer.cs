@@ -8,9 +8,10 @@ namespace Serialization.Structure.Instrument
 {
     class Synthesizer : KeyboardInstrument
     {
-        public Synthesizer(string name) : base(name)
+        public Synthesizer() : base("Синтезатор")
         {
             company.libFile = "E:\\Универ\\2 course\\ООП\\3rd_lab\\Serialization\\Serialization\\Structure\\Descriptions\\Libs\\synthesizer\\Companies.txt";
         }
+
     }
 }

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Serialization.Structure.Instrument
 {
     class Bass : Guitar
     {
-        public Bass(string name) : base(name)
+        private static readonly string name;
+
+        public Bass() : base("Бас-гитара")
         {
         }
+
     }
 }

@@ -8,18 +8,28 @@ using Serialization.Structure.Descriptions;
 namespace Serialization.Structure.Instrument
 {
     abstract class MusicalInstrument : Description
-    {
-        //abstract public int Identifier { get; protected set; }
-        public virtual List<Description> Description { get; protected set; }
-  
-        public Company company { get; set; }
-        public Country country { get; set; }
+    {  
+        public Company company { get; protected set; }
+        public Country country { get; protected set; }
         public Model model { get; set; }
 
         public MusicalInstrument(string name) : base(name)
         {
-            Description.Add(new Description(name));
-            country.libFile = "E:\\Универ\\2 course\\ООП\\3rd_lab\\Serialization\\Serialization\\Structure\\Descriptions\\Libs\\common\\Countries.txt";
+            country.libFile = "..\\..\\Structure\\Descriptions\\Libs\\common\\Countries.txt";
+        }
+
+        public override List<Description> description
+        {
+            get
+            {
+                var baseDescriptionList = base.description;
+
+                baseDescriptionList.Add(company);
+                baseDescriptionList.Add(country);
+                baseDescriptionList.Add(model);
+
+                return baseDescriptionList;
+            }
         }
     }
 }

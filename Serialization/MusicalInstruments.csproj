@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Services\FileReader.cs" />
     <Compile Include="Serializator\Serializator.cs" />
+    <Compile Include="Services\InstrumentFactory.cs" />
     <Compile Include="Services\Templates\BaseWindow.xaml.cs">
       <DependentUpon>BaseWindow.xaml</DependentUpon>
     </Compile>
@@ -67,7 +68,7 @@
     <Compile Include="Structure\Descriptions\Country.cs" />
     <Compile Include="Structure\Instruments\Electric.cs" />
     <Compile Include="Structure\Instruments\Guitar.cs" />
-    <Compile Include="Structure\Descriptions\Description.cs" />
+    <Compile Include="Structure\Description.cs" />
     <Compile Include="Structure\Instruments\KeyboardInstrument.cs" />
     <Compile Include="Structure\Instruments\MusicalInstrument.cs" />
     <Compile Include="Structure\Descriptions\Model.cs" />
