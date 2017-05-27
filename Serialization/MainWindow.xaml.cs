@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Serialization.Structure.Instrument;
 using Serialization.Services;
+using Serialization.Services.Templates;
+using Microsoft.Win32;
+using System;
 
 namespace Serialization
 {
@@ -22,42 +14,174 @@ namespace Serialization
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<MusicalInstrument> instrumentList;
         private InstrumentFactory instrumentFactory;
         private WindowFactory windowFactory;
+        private BaseWindow window;
+        private MusicalInstrument instrument;
 
-        public delegate void onTypeSelectEventHandler(object sender, SelectionChangedEventArgs e);
+        private delegate void listChangedEventHandler();
+        private event listChangedEventHandler listChanged;
 
-        private List<MusicalInstrument> instrumentList;
-
-        private Window window;
+        public List<MusicalInstrument> InstrumentList
+        {
+            get { return instrumentList; }
+            set
+            {
+                instrumentList = value;
+                listChanged?.Invoke();
+            }
+        }
 
         public MainWindow()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            instrumentFactory = new InstrumentFactory();
-            windowFactory = new WindowFactory();
-            instrumentList = new List<MusicalInstrument>();
+                instrumentFactory = new InstrumentFactory();
+                windowFactory = new WindowFactory();
+                instrumentList = new List<MusicalInstrument>();
+
+                listChanged += refreshListBox;
+
+                addNewInstrument(this);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
-        private void addNewInstrument(string name)
+        private void addNewInstrument(Window sender, string name)
         {
-            var instrument = instrumentFactory.create(name);
+            instrument = instrumentFactory.create(name);
+            var handler = new SelectionChangedEventHandler(comboBox_onTypeSelect);
 
-            window = windowFactory.create(instrument, comboBox_onTypeSelect);
-                       
+            if (sender == this)
+            {
+                window = windowFactory.create(instrument, handler);
+                sender.Hide();
+                window.Show();
+
+                window.AddButton.Click += new RoutedEventHandler(addButton_onClick);
+                window.SerializeButton.Click += new RoutedEventHandler(serializeButton_onClick);
+                window.DeserializeButton.Click += new RoutedEventHandler(deserializeButton_onClick);
+                window.DeleteButton.Click += new RoutedEventHandler(deleteButton_onClick);
+                window.ObjectListBox.SelectionChanged += new SelectionChangedEventHandler(listBox_onSelectionChanged);
+                window.Closed += new EventHandler(window_onClose); 
+            }
+            else
+            {
+                windowFactory.reinitialize(window, instrument, handler);
+            }
         }
 
-        private void addNewInstrument()
+        private void addNewInstrument(Window sender)
         {
-            addNewInstrument(instrumentFactory.getInstrumentNameCollection()[0]);
+            addNewInstrument(sender, instrumentFactory.getInstrumentNameCollection()[0]);
         }
 
         public void comboBox_onTypeSelect(object sender, SelectionChangedEventArgs e)
         {
-            addNewInstrument((string)e.AddedItems[0]);
+            addNewInstrument(window, (string)e.AddedItems[0]);
+        }
 
-            window.Close();
+        public void addButton_onClick(object sender, RoutedEventArgs e)
+        {
+            instrumentList.Add(instrument);
+            listChanged?.Invoke();
+        }
+
+        public void serializeButton_onClick(object sender, RoutedEventArgs e)
+        {
+            var path = getFolderPath();
+            if (path.Length != 0)
+            {
+                var serializator = new Serializator.Serializator();
+                try
+                {
+                    serializator.Serialize(instrumentList, path);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+            }
+        }
+
+        public void deleteButton_onClick(object sender, RoutedEventArgs e)
+        {
+            int index = window.ObjectListBox.SelectedIndex;
+            instrumentList.RemoveAt(window.ObjectListBox.SelectedIndex);
+            listChanged?.Invoke(); 
+        }
+
+        public void listBox_onSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                int index = (sender as ListBox).SelectedIndex;
+
+                if (index > 0)
+                {
+                    instrument = instrumentList[(sender as ListBox).SelectedIndex];
+                    var handler = new SelectionChangedEventHandler(comboBox_onTypeSelect);
+                    windowFactory.reinitialize(window, instrument, handler);
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        public void deserializeButton_onClick(object sender, RoutedEventArgs e)
+        {
+            var path = getPath();
+            if (path.Length != 0)
+            {
+                var serializator = new Serializator.Serializator();
+                try
+                {
+                    instrumentList = (List<MusicalInstrument>)serializator.Deserialize(path);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+            }
+            listChanged?.Invoke();
+        }
+
+        public void window_onClose(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        public string getPath()
+        {
+            OpenFileDialog myDialog = new OpenFileDialog();
+            myDialog.ShowDialog();
+            myDialog.CheckFileExists = true;
+            myDialog.Multiselect = true;
+
+            return myDialog.FileName;
+        }
+
+        public string getFolderPath()
+        {
+            return "C:\\Users\\Aleksey\\Desktop\\file1.txt";
+        }
+
+        public void refreshListBox()
+        {
+            window.ObjectListBox.Items.Clear();
+
+            foreach (MusicalInstrument instrument in instrumentList)
+            {
+                window.ObjectListBox.Items.Add(instrument.Value);
+            }
         }
     }
 }

@@ -72,7 +72,6 @@
     <Compile Include="Structure\Instruments\KeyboardInstrument.cs" />
     <Compile Include="Structure\Instruments\MusicalInstrument.cs" />
     <Compile Include="Structure\Descriptions\Model.cs" />
-    <Compile Include="Structure\Instruments\StringedInstrument.cs" />
     <Compile Include="Structure\Instruments\Synthesizer.cs" />
     <Compile Include="Structure\Descriptions\Material.cs" />
     <Page Include="MainWindow.xaml">
@@ -120,7 +119,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Structure\Instruments\Libs\Instruments.txt" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Structure\Descriptions\Libs\common\Countries.txt" />
   </ItemGroup>
@@ -133,6 +134,12 @@
     <Resource Include="Structure\Descriptions\Libs\synthesizer\Companies.txt" />
     <Resource Include="Structure\Descriptions\Libs\synthesizer\Materials.txt" />
     <Resource Include="Structure\Descriptions\Libs\synthesizer\Models.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Structure\Descriptions\Libs\guitar\Pickups.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Structure\Descriptions\Libs\synthesizer\ButtonNum.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

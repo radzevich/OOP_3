@@ -1,17 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Serialization.Structure.Instrument
 {
+    [Serializable]
     class Synthesizer : KeyboardInstrument
     {
-        public Synthesizer() : base("Синтезатор")
-        {
-            company.libFile = "E:\\Универ\\2 course\\ООП\\3rd_lab\\Serialization\\Serialization\\Structure\\Descriptions\\Libs\\synthesizer\\Companies.txt";
-        }
+        public Description buttonNum { get; set; }
 
+        public Synthesizer() : base()
+        {
+            Value = "Синтезатор";
+
+            buttonNum = new Description("Количество клавиш");
+
+            model.LibPath = "..\\..\\Structure\\Descriptions\\Libs\\synthesizer\\Models.txt";
+            buttonNum.LibPath = "..\\..\\Structure\\Descriptions\\Libs\\synthesizer\\ButtonNum.txt";
+        }
+        
+        public override List<Description> getDescription()
+        {
+            {
+                var baseDescriptionList = base.getDescription();
+
+                baseDescriptionList.Add(buttonNum);
+
+                return baseDescriptionList;
+            }
+        }
     }
 }

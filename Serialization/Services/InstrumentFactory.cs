@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Serialization.Structure.Instrument;
 
 namespace Serialization.Services
@@ -11,7 +8,7 @@ namespace Serialization.Services
     {
         private delegate MusicalInstrument createInstrumentDelegate();
 
-        private readonly Dictionary<string, createInstrumentDelegate> instrumentDictionary;
+        private readonly Dictionary<string, createInstrumentDelegate> instrumentDictionary = new Dictionary<string, createInstrumentDelegate>();
 
         public InstrumentFactory()
         {
@@ -20,10 +17,10 @@ namespace Serialization.Services
 
         private void createInstrumentDictionary()
         {
-            instrumentDictionary.Add((new Electric()).description[0].Value, createElectricGuitar);
-            instrumentDictionary.Add((new Acoustic()).description[0].Value, createAcousticGuitar);
-            instrumentDictionary.Add((new Bass()).description[0].Value, createBassGuitar);
-            instrumentDictionary.Add((new Synthesizer()).description[0].Value, createSynthesizer);
+            instrumentDictionary.Add((new Electric()).getDescription()[0].Value, createElectricGuitar);
+            instrumentDictionary.Add((new Acoustic()).getDescription()[0].Value, createAcousticGuitar);
+            instrumentDictionary.Add((new Bass()).getDescription()[0].Value, createBassGuitar);
+            instrumentDictionary.Add((new Synthesizer()).getDescription()[0].Value, createSynthesizer);
         }
 
         private MusicalInstrument createElectricGuitar()
@@ -51,9 +48,9 @@ namespace Serialization.Services
             return instrumentDictionary[key].Invoke();
         }
 
-        public string[] getInstrumentNameCollection()
+        public List<string> getInstrumentNameCollection()
         {
-            return instrumentDictionary.Keys.ToArray<string>();
+            return instrumentDictionary.Keys.ToList();
         }
     }
 }

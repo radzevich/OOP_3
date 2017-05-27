@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Serialization.Properties
+namespace Serializator.Properties
 {
 
 

@@ -1,24 +1,27 @@
 ﻿using System.Collections.Generic;
 using Serialization.Structure.Descriptions;
+using System;
 
 namespace Serialization.Structure.Instrument
 {
-    abstract class Guitar : StringedInstrument
+    [Serializable]
+    abstract class Guitar : MusicalInstrument
     {
         public Material material { get; set; }
 
-        public Guitar(string name) : base(name)
+        public Guitar() : base()
         {
-            company.libFile = "E:\\Универ\\2 course\\ООП\\3rd_lab\\Serialization\\Serialization\\Structure\\Descriptions\\Libs\\guitar\\Companies.txt";
-            material.libFile = "E:\\Универ\\2 course\\ООП\\3rd_lab\\Serialization\\Serialization\\Structure\\Descriptions\\Libs\\guitar\\Material.txt";
-            model.libFile = "E:\\Универ\\2 course\\ООП\\3rd_lab\\Serialization\\Serialization\\Structure\\Descriptions\\Libs\\guitar\\Models.txt";
+            material = new Material();
+
+            company.LibPath = "..\\..\\\\Structure\\Descriptions\\Libs\\guitar\\Companies.txt";
+            material.LibPath = "..\\..\\Structure\\Descriptions\\Libs\\guitar\\Materials.txt";
+            model.LibPath = "..\\..\\\\Structure\\Descriptions\\Libs\\guitar\\Models.txt";
         }
 
-        public override List<Description> description
+        public override List<Description> getDescription()
         {
-            get
             {
-                var baseDescriptionList = base.description;
+                var baseDescriptionList = base.getDescription();
 
                 baseDescriptionList.Add(material);
 

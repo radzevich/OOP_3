@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Serialization.Services.Templates"
         mc:Ignorable="d"
-        Title="BaseWindow" Height="400" Width="1000" >
+        Title="BaseWindow" Height="400" Width="1000"  >
     <Window.Resources>
         <Style TargetType="ComboBoxItem">
             <Setter Property="Margin" Value="1"/>
@@ -32,19 +32,47 @@
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="Height" Value="20" />
         </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
     </Window.Resources>
-    <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid x:Name="EditField" Grid.Column="0" Height="auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition />
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
+
+            <Grid x:Name="EditField" Grid.Column="0" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <ListBox x:Name="ObjectListBox" Margin="2" Grid.Column="1" Height="auto"/>
         </Grid>
-        <ListBox x:Name="ObjectListBox" Margin="2" Grid.Column="1" Height="auto"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="AddButton" Grid.Column="0" HorizontalAlignment="Center" Content="Добавить" VerticalAlignment="Center" />
+            <Button x:Name="SerializeButton" Grid.Column="1" HorizontalAlignment="Center" Content="Сериализовать" VerticalAlignment="Center" />
+            <Button x:Name="DeserializeButton" Grid.Column="2" HorizontalAlignment="Center" Content="Десериализовать" VerticalAlignment="Center" />
+            <Button x:Name="DeleteButton" Grid.Column="4" HorizontalAlignment="Center" Content="Удалить" VerticalAlignment="Center" />
+        </Grid>
     </Grid>
 </Window>

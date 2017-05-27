@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.IO;
 using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace Serialization.Services
 {
@@ -18,7 +14,7 @@ namespace Serialization.Services
                 throw new FileNotFoundException();
             }
 
-            return File.ReadAllLines(filePath);
+            return File.ReadAllLines(filePath, Encoding.Default);
         } 
     }
 }

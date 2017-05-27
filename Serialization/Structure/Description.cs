@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 namespace Serialization.Structure
 {
+    [Serializable]
     public class Description
     {
         private string name;
         private string value;
         private string libPath;
-
-        public virtual List<Description> description { get; }
 
         public virtual string LibPath
         {
@@ -40,9 +39,15 @@ namespace Serialization.Structure
 
         public Description(string name)
         {
-            this.name = name;
+            Name = name;
+        }
 
-            description.Add(this);
+        public virtual List<Description> getDescription()
+        {
+            var descriptionList = new List<Description>();
+
+            descriptionList.Add(this);
+            return descriptionList;
         }
     }
 }

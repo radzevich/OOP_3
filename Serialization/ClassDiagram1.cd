@@ -10,18 +10,18 @@
   <Class Name="Serialization.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="9.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAABCAACAAAAQEAAQIBBJAAAAEAAAIAhAAAAAQAAA=</HashCode>
       <FileName>MainWindow.xaml.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Serialization.Properties.Resources" Collapsed="true">
+  <Class Name="Serializator.Properties.Resources" Collapsed="true">
     <Position X="6" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="Serialization.Properties.Settings" Collapsed="true">
+  <Class Name="Serializator.Properties.Settings" Collapsed="true">
     <Position X="9.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
@@ -30,21 +30,21 @@
   <Class Name="Serialization.Serializator.Serializator" Collapsed="true">
     <Position X="7.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Serializator\Serializator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Serialization.Structure.Descriptions.Country" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="7.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Structure\Descriptions\Country.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Serialization.Structure.Instrument.Guitar">
     <Position X="3.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Structure\Instruments\Guitar.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -58,21 +58,14 @@
   <Class Name="Serialization.Structure.Descriptions.Model" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="6" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Structure\Descriptions\Model.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Serialization.Structure.Instrument.StringedInstrument">
-    <Position X="3.5" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Structure\Instruments\StringedInstrument.cs</FileName>
+      <FileName>Structure\Descriptions\Model.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Serialization.Structure.Instrument.Synthesizer" Collapsed="true">
     <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Structure\Instruments\Synthesizer.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("structure/descriptions/libs/synthesizer/companies.txt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("structure/descriptions/libs/synthesizer/materials.txt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("structure/descriptions/libs/synthesizer/models.txt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("structure/descriptions/libs/synthesizer/buttonnum.txt")]
 
 

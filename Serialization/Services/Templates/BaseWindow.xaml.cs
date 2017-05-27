@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Serialization.Structure;
 
 namespace Serialization.Services.Templates
@@ -25,6 +15,11 @@ namespace Serialization.Services.Templates
         public BaseWindow()
         {
             InitializeComponent();
+        }
+
+        public void comboBox_onSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            fields[sender as ComboBox].Value = (string)e.AddedItems[0];
         }
     }
 }

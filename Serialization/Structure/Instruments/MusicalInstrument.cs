@@ -1,35 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Serialization.Structure.Descriptions;
+using System;
 
 namespace Serialization.Structure.Instrument
 {
+    [Serializable]
     public abstract class MusicalInstrument : Description
     {  
-        public Company company { get; protected set; }
-        public Country country { get; protected set; }
-        public Model model { get; set; }
+        public Description company { get; protected set; }
+        public Description country { get; protected set; }
+        public Description model { get; set; }
 
-        public MusicalInstrument(string name) : base(name)
+        public MusicalInstrument() : base("Тип")
         {
-            country.libFile = "..\\..\\Structure\\Descriptions\\Libs\\common\\Countries.txt";
+            base.LibPath = "..\\..\\Structure\\Instruments\\Libs\\Instruments.txt";
+            company = new Description("Производитель");
+            country = new Description("Страна");
+            model = new Description("Модель");
+
+            country.LibPath = "..\\..\\Structure\\Descriptions\\Libs\\common\\Countries.txt";
         }
 
-        public override List<Description> description
+        public override List<Description> getDescription()
         {
-            get
-            {
-                var baseDescriptionList = base.description;
+            var baseDescriptionList = base.getDescription();
 
-                baseDescriptionList.Add(company);
-                baseDescriptionList.Add(country);
-                baseDescriptionList.Add(model);
+            baseDescriptionList.Add(company);
+            baseDescriptionList.Add(model);
+            baseDescriptionList.Add(country);
 
-                return baseDescriptionList;
-            }
+            return baseDescriptionList;
         }
     }
 }
