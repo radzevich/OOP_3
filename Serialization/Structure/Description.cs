@@ -33,7 +33,7 @@ namespace Serialization.Structure
             get { return name; }
             set
             {
-                this.name = value;
+                name = value;
             }
         }
 

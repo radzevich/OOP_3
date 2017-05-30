@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Serialization.Structure.Descriptions;
 using System;
 
 namespace Serialization.Structure.Instrument

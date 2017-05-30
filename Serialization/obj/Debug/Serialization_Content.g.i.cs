@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("structure/descriptions/libs/synthesizer/buttonnum.txt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("styles/xmlfile1.xml")]
 
 

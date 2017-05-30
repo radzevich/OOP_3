@@ -12,5 +12,3 @@ E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Se
 E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\MusicalInstruments.csproj.GenerateResource.Cache
 E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Serialization.exe
 E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Serialization.pdb
-E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Services\Templates\BaseWindow.g.cs
-E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Services\Templates\BaseWindow.baml

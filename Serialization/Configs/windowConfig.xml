@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <StyleList>
+    <Style path="..\\..\\Styles\\defaultWindowStyle">Default</Style>
+  </StyleList>
+  <ActiveStyle path="..\\..\\Styles\\defaultWindowStyle">Default</ActiveStyle>
+</Config>

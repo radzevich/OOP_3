@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Serialization.Structure.Instrument;
 using Serialization.Services;
-using Serialization.Services.Templates;
 using Microsoft.Win32;
 using System;
 
@@ -17,7 +16,6 @@ namespace Serialization
         private List<MusicalInstrument> instrumentList;
         private InstrumentFactory instrumentFactory;
         private WindowFactory windowFactory;
-        private BaseWindow window;
         private MusicalInstrument instrument;
 
         private delegate void listChangedEventHandler();
@@ -60,20 +58,15 @@ namespace Serialization
 
             if (sender == this)
             {
-                window = windowFactory.create(instrument, handler);
-                sender.Hide();
-                window.Show();
-
-                window.AddButton.Click += new RoutedEventHandler(addButton_onClick);
-                window.SerializeButton.Click += new RoutedEventHandler(serializeButton_onClick);
-                window.DeserializeButton.Click += new RoutedEventHandler(deserializeButton_onClick);
-                window.DeleteButton.Click += new RoutedEventHandler(deleteButton_onClick);
-                window.ObjectListBox.SelectionChanged += new SelectionChangedEventHandler(listBox_onSelectionChanged);
-                window.Closed += new EventHandler(window_onClose); 
+                this.AddButton.Click += new RoutedEventHandler(addButton_onClick);
+                this.SerializeButton.Click += new RoutedEventHandler(serializeButton_onClick);
+                this.DeserializeButton.Click += new RoutedEventHandler(deserializeButton_onClick);
+                this.DeleteButton.Click += new RoutedEventHandler(deleteButton_onClick);
+                this.ObjectListBox.SelectionChanged += new SelectionChangedEventHandler(listBox_onSelectionChanged);
             }
             else
             {
-                windowFactory.reinitialize(window, instrument, handler);
+                //windowFactory.reinitialize(this, instrument, handler);
             }
         }
 
@@ -84,7 +77,7 @@ namespace Serialization
 
         public void comboBox_onTypeSelect(object sender, SelectionChangedEventArgs e)
         {
-            addNewInstrument(window, (string)e.AddedItems[0]);
+            addNewInstrument(this, (string)e.AddedItems[0]);
         }
 
         public void addButton_onClick(object sender, RoutedEventArgs e)
@@ -113,8 +106,8 @@ namespace Serialization
 
         public void deleteButton_onClick(object sender, RoutedEventArgs e)
         {
-            int index = window.ObjectListBox.SelectedIndex;
-            instrumentList.RemoveAt(window.ObjectListBox.SelectedIndex);
+            int index = this.ObjectListBox.SelectedIndex;
+            instrumentList.RemoveAt(this.ObjectListBox.SelectedIndex);
             listChanged?.Invoke(); 
         }
 
@@ -128,7 +121,7 @@ namespace Serialization
                 {
                     instrument = instrumentList[(sender as ListBox).SelectedIndex];
                     var handler = new SelectionChangedEventHandler(comboBox_onTypeSelect);
-                    windowFactory.reinitialize(window, instrument, handler);
+                    //windowFactory.reinitialize(this, instrument, handler);
                 }
             }
             catch (Exception exc)
@@ -155,11 +148,6 @@ namespace Serialization
             listChanged?.Invoke();
         }
 
-        public void window_onClose(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         public string getPath()
         {
             OpenFileDialog myDialog = new OpenFileDialog();
@@ -182,11 +170,11 @@ namespace Serialization
 
         public void refreshListBox()
         {
-            window.ObjectListBox.Items.Clear();
+            this.ObjectListBox.Items.Clear();
 
             foreach (MusicalInstrument instrument in instrumentList)
             {
-                window.ObjectListBox.Items.Add(instrument.Value);
+                this.ObjectListBox.Items.Add(instrument.Value);
             }
         }
     }
