@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("styles/xmlfile1.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("configs/instrimentlist.xml")]
 
 

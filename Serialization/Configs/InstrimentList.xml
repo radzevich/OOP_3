@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Instruments>
+  <Instrument name="Электрогитара"></Instrument>
+  <Instrument name="Акустическая гитара"></Instrument>
+  <Instrument name="Бас-гитара"></Instrument>
+  <Instrument name="Синтезатор"></Instrument>
+</Instruments>

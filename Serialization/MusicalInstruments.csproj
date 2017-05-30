@@ -71,17 +71,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Configs\InstrumentListViewer.cs" />
     <Compile Include="Configs\WindowConfig.cs" />
     <Compile Include="Services\FileReader.cs" />
     <Compile Include="Serializator\Serializator.cs" />
     <Compile Include="Services\InstrumentFactory.cs" />
-    <Compile Include="Services\WindowFactory.cs" />
+    <Compile Include="Services\WindowDecorator.cs" />
     <Compile Include="Structure\Instruments\Acoustic.cs" />
     <Compile Include="Structure\Instruments\Bass.cs" />
     <Compile Include="Structure\Instruments\Electric.cs" />
     <Compile Include="Structure\Instruments\Guitar.cs" />
     <Compile Include="Structure\Description.cs" />
-    <Compile Include="Structure\Instruments\KeyboardInstrument.cs" />
+    <Compile Include="Structure\IDescription.cs" />
     <Compile Include="Structure\Instruments\MusicalInstrument.cs" />
     <Compile Include="Structure\Instruments\Synthesizer.cs" />
     <Page Include="MainWindow.xaml">
@@ -164,6 +165,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Configs\InstrimentList.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

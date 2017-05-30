@@ -8,13 +8,6 @@ namespace Serialization.Structure.Instrument
     {
         public Description stringNumber { get; set; }
 
-        public Bass()
-        {
-            Value = "Бас-гитара";
-
-            stringNumber = new Description("Количество струн");
-            stringNumber.LibPath = "..\\..\\Structure\\Descriptions\\Libs\\guitar\\StringNumber.txt";
-        }
 
         public override List<Description> getDescription()
         {

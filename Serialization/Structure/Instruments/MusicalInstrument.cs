@@ -10,15 +10,6 @@ namespace Serialization.Structure.Instrument
         public Description country { get; protected set; }
         public Description model { get; set; }
 
-        public MusicalInstrument() : base("Тип")
-        {
-            base.LibPath = "..\\..\\Structure\\Instruments\\Libs\\Instruments.txt";
-            company = new Description("Производитель");
-            country = new Description("Страна");
-            model = new Description("Модель");
-
-            country.LibPath = "..\\..\\Structure\\Descriptions\\Libs\\common\\Countries.txt";
-        }
 
         public override List<Description> getDescription()
         {

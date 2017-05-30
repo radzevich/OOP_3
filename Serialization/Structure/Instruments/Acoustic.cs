@@ -7,13 +7,6 @@ namespace Serialization.Structure.Instrument
     class Acoustic : Guitar
     {
         public Description backMaterial { get; set; }
-        public Acoustic()
-        {
-            Value = "Акустическая гитара";
-
-            backMaterial = new Description("Задняя дека");
-            backMaterial.LibPath = "..\\..\\Structure\\Descriptions\\Libs\\guitar\\Materials.txt";
-        }
 
         public override List<Description> getDescription()
         {

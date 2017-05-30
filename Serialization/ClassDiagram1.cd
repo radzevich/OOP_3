@@ -10,10 +10,9 @@
   <Class Name="Serialization.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="9.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAABCAACAAAAAEAAQIBBJAAAAEAAAAAhAAAAAYAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MainWindow.xaml.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Serializator.Properties.Resources" Collapsed="true">
     <Position X="6" Y="2.75" Width="1.5" />
