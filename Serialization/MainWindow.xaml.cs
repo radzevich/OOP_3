@@ -96,6 +96,7 @@ namespace Serialization
         public void serializeButton_onClick(object sender, RoutedEventArgs e)
         {
             var path = getFolderPath();
+            
             if (path.Length != 0)
             {
                 var serializator = new Serializator.Serializator();
@@ -123,7 +124,7 @@ namespace Serialization
             {
                 int index = (sender as ListBox).SelectedIndex;
 
-                if (index > 0)
+                //if (index > 0)
                 {
                     instrument = instrumentList[(sender as ListBox).SelectedIndex];
                     var handler = new SelectionChangedEventHandler(comboBox_onTypeSelect);
@@ -171,7 +172,12 @@ namespace Serialization
 
         public string getFolderPath()
         {
-            return "C:\\Users\\Aleksey\\Desktop\\file1.txt";
+            using (var saveFileDialog = new System.Windows.Forms.SaveFileDialog())
+            {
+                saveFileDialog.ShowDialog();
+
+                return saveFileDialog.FileName;
+            }
         }
 
         public void refreshListBox()

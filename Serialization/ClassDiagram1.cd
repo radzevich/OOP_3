@@ -10,7 +10,7 @@
   <Class Name="Serialization.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="9.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAABCAACAAAAQEAAQIBBJAAAAEAAAIAhAAAAAQAAA=</HashCode>
+      <HashCode>AAgAABCAACAAAAQEAAQIBBJAAAAEAAAIAhAAAAAYAAA=</HashCode>
       <FileName>MainWindow.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
