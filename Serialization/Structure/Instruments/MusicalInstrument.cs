@@ -6,9 +6,9 @@ namespace Serialization.Structure.Instrument
     [Serializable]
     public abstract class MusicalInstrument : Description
     {  
-        public Description company { get; protected set; }
-        public Description country { get; protected set; }
-        public Description model { get; set; }
+        public Description company { get; set; } = new Description();
+        public Description country { get; set; } = new Description();
+        public Description model { get; set; } = new Description();
 
 
         public override List<Description> getDescription()

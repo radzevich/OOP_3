@@ -6,9 +6,9 @@ namespace Serialization.Structure.Instrument
     [Serializable]
     class Synthesizer : MusicalInstrument
     {
-        public Description buttonNum { get; set; }
+        public Description buttonNum { get; set; } = new Description();
 
-        
+
         public override List<Description> getDescription()
         {
             {

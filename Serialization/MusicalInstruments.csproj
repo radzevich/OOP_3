@@ -71,7 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Configs\InstrumentListViewer.cs" />
+    <Compile Include="Configs\InstrumentViewer.cs" />
     <Compile Include="Configs\WindowConfig.cs" />
     <Compile Include="Services\FileReader.cs" />
     <Compile Include="Serializator\Serializator.cs" />
@@ -125,28 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Structure\Instruments\Libs\Instruments.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Structure\Descriptions\Libs\common\Countries.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Structure\Descriptions\Libs\guitar\Companies.txt" />
-    <Resource Include="Structure\Descriptions\Libs\guitar\Materials.txt" />
-    <Resource Include="Structure\Descriptions\Libs\guitar\Models.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Structure\Descriptions\Libs\synthesizer\Companies.txt" />
-    <Resource Include="Structure\Descriptions\Libs\synthesizer\Materials.txt" />
-    <Resource Include="Structure\Descriptions\Libs\synthesizer\Models.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Structure\Descriptions\Libs\guitar\Pickups.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Structure\Descriptions\Libs\synthesizer\ButtonNum.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Styles\defaultWindowsStyle.xml" />

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Serialization.Structure.Instrument;
+using Serialization.Structure;
 
 namespace Serialization.Services
 {
@@ -13,6 +14,11 @@ namespace Serialization.Services
         public InstrumentFactory()
         {
             createInstrumentDictionary();
+        }
+
+        protected void createFields(MusicalInstrument instrument)
+        {
+
         }
 
         private void createInstrumentDictionary()
@@ -51,6 +57,11 @@ namespace Serialization.Services
         public List<string> getInstrumentNameCollection()
         {
             return instrumentDictionary.Keys.ToList();
+        }
+
+        public void iniitializeInstrumen()
+        {
+
         }
     }
 }

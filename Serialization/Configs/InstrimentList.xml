@@ -1,7 +1,104 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Instruments>
-  <Instrument name="Электрогитара"></Instrument>
-  <Instrument name="Акустическая гитара"></Instrument>
-  <Instrument name="Бас-гитара"></Instrument>
-  <Instrument name="Синтезатор"></Instrument>
+  <Electric name="Электрогитара">
+    <country name="Страна">
+      <item>США</item>
+      <item>Япония</item>
+      <item>Индонезия</item>
+      <item>Китай</item>
+    </country>
+    <company name="Производитель">
+      <item>Gibson</item>
+      <item>Fender</item>
+      <item>Ibanez</item>
+      <item>Yamacha</item>
+      <item>Cort</item>
+    </company>
+    <model name="Модель">
+      <item>Les Paul</item>
+      <item>Telecaster</item>
+      <item>Stratocaster</item>
+    </model>
+    <pickups x="Звукосниматели">
+      <item>Активные</item>
+      <item>Пассивные</item>
+    </pickups>
+  </Electric>
+  
+  <Acoustic name="Акустическая гитара">
+    <country name="Страна">
+      <item>США</item>
+      <item>Япония</item>
+      <item>Индонезия</item>
+      <item>Китай</item>
+    </country>
+    <company name="Производитель">
+      <item>Gibson</item>
+      <item>Fender</item>
+      <item>Ibanez</item>
+      <item>Yamacha</item>
+      <item>Cort</item>
+    </company>
+    <model name="Модель">
+      <item>Les Paul</item>
+      <item>Talman</item>
+      <item>Stratocaster</item>
+      <itme>Takamine</itme>
+    </model>
+    <backMaterial x="Задняя дека">
+      <item>Активные</item>
+      <item>Пассивные</item>
+    </backMaterial>
+  </Acoustic>
+  
+  <Bas name="Бас-гитара">
+    <country name="Страна">
+      <item>США</item>
+      <item>Япония</item>
+      <item>Индонезия</item>
+      <item>Китай</item>
+    </country>
+    <company name="Производитель">
+      <item>Washburn</item>
+      <item>Gibson</item>
+      <item>Fender</item>
+      <item>Ibanez</item>
+      <item>Yamacha</item>
+      <item>Cort</item>
+    </company>
+    <model name="Модель">
+      <item>Precision</item>
+      <item>Spirits of life</item>
+      <item>Jazz</item>
+      <item>Old jazz</item>
+    </model>
+    <stringNumber x="Количество струн">
+      <item>4</item>
+      <item>5</item>
+      <item>6</item>
+    </stringNumber>
+  </Bas>
+  
+  <Synthesizer name="Синтезатор">
+    <country name="Страна">
+      <item>США</item>
+      <item>Япония</item>
+      <item>Китай</item>
+    </country>
+    <company name="Производитель">
+      <item>Yamacha</item>
+      <item>Casio</item>
+    </company>
+    <model name="Модель">
+      <item>DGX</item>
+      <item>PSR</item>
+      <item>MO</item>
+      <item>MOTIF</item>
+    </model>
+    <buttonNum name="Количество клавиш">
+      <item>61</item>
+      <item>76</item>
+      <item>88</item>
+    </buttonNum>
+  </Synthesizer>
 </Instruments>

@@ -7,7 +7,7 @@ namespace Serialization.Structure
     public class Description : IDescription
     {
         public string Name { get; set; }
-        public string value { get; set; }
+        public string Value { get; set; }
 
 
         public virtual List<Description> getDescription()

@@ -6,7 +6,7 @@ namespace Serialization.Structure.Instrument
     [Serializable]
     class Acoustic : Guitar
     {
-        public Description backMaterial { get; set; }
+        public Description backMaterial { get; set; } = new Description();
 
         public override List<Description> getDescription()
         {
