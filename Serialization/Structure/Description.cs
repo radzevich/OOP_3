@@ -10,7 +10,7 @@ namespace Serialization.Structure
         public string Value { get; set; }
 
 
-        public virtual List<Description> getDescription()
+        public virtual List<Description> GetDescription()
         {
             var descriptionList = new List<Description>();
 

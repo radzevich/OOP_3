@@ -7,7 +7,7 @@ namespace Serialization.Services
     {
         public FileReader() { }
         
-        public string[] read(string filePath)
+        public string[] Read(string filePath)
         {
             if (!File.Exists(filePath))
             {

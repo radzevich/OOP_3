@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Serialization.Structure.Instrument
+namespace Serialization.Structure.Instruments
 {
     [Serializable]
-    class Synthesizer : MusicalInstrument
+    internal class Synthesizer : MusicalInstrument
     {
-        public Description buttonNum { get; set; } = new Description();
+        public Description KeynNumber { get; set; } = new Description();
 
 
-        public override List<Description> getDescription()
+        public override List<Description> GetDescription()
         {
             {
-                var baseDescriptionList = base.getDescription();
+                var baseDescriptionList = base.GetDescription();
 
-                baseDescriptionList.Add(buttonNum);
+                baseDescriptionList.Add(KeynNumber);
 
                 return baseDescriptionList;
             }

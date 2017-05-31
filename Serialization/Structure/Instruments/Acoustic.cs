@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Serialization.Structure.Instrument
+namespace Serialization.Structure.Instruments
 {
     [Serializable]
-    class Acoustic : Guitar
+    internal class Acoustic : Guitar
     {
-        public Description backMaterial { get; set; } = new Description();
+        public Description BackMaterial { get; set; } = new Description();
 
-        public override List<Description> getDescription()
+        public override List<Description> GetDescription()
         {
-            var baseDescriptionList = base.getDescription();
+            var baseDescriptionList = base.GetDescription();
 
-            baseDescriptionList.Add(backMaterial);
+            baseDescriptionList.Add(BackMaterial);
 
             return baseDescriptionList;
         }

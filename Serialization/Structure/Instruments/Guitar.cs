@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Serialization.Structure.Instrument
+namespace Serialization.Structure.Instruments
 {
     [Serializable]
-    abstract class Guitar : MusicalInstrument
+    internal abstract class Guitar : MusicalInstrument
     {
-        public Description material { get; set; } = new Description();
+        public Description Material { get; set; } = new Description();
 
 
-        public override List<Description> getDescription()
+        public override List<Description> GetDescription()
         {
             {
-                var baseDescriptionList = base.getDescription();
+                var baseDescriptionList = base.GetDescription();
  
-                baseDescriptionList.Add(material);
+                baseDescriptionList.Add(Material);
 
                 return baseDescriptionList;
             }

@@ -1,65 +1,65 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Serialization.Structure.Instrument;
 using Serialization.Structure;
+using Serialization.Structure.Instruments;
 
 namespace Serialization.Services
 {
-    class InstrumentFactory
+    public class InstrumentFactory
     {
-        private delegate MusicalInstrument createInstrumentDelegate();
+        private delegate MusicalInstrument CreateInstrumentDelegate();
 
-        private readonly Dictionary<string, createInstrumentDelegate> instrumentDictionary = new Dictionary<string, createInstrumentDelegate>();
+        private readonly Dictionary<string, CreateInstrumentDelegate> _instrumentDictionary = new Dictionary<string, CreateInstrumentDelegate>();
 
         public InstrumentFactory()
         {
-            createInstrumentDictionary();
+            CreateInstrumentDictionary();
         }
 
-        protected void createFields(MusicalInstrument instrument)
+        protected void CreateFields(MusicalInstrument instrument)
         {
 
         }
 
-        private void createInstrumentDictionary()
+        private void CreateInstrumentDictionary()
         {
-            instrumentDictionary.Add((new Electric()).getDescription()[0].Value, createElectricGuitar);
-            instrumentDictionary.Add((new Acoustic()).getDescription()[0].Value, createAcousticGuitar);
-            instrumentDictionary.Add((new Bass()).getDescription()[0].Value, createBassGuitar);
-            instrumentDictionary.Add((new Synthesizer()).getDescription()[0].Value, createSynthesizer);
+            _instrumentDictionary.Add((new Electric()).GetDescription()[0].Value, CreateElectricGuitar);
+            _instrumentDictionary.Add((new Acoustic()).GetDescription()[0].Value, CreateAcousticGuitar);
+            _instrumentDictionary.Add((new Bass()).GetDescription()[0].Value, CreateBassGuitar);
+            _instrumentDictionary.Add((new Synthesizer()).GetDescription()[0].Value, CreateSynthesizer);
         }
 
-        private MusicalInstrument createElectricGuitar()
+        protected virtual MusicalInstrument CreateElectricGuitar()
         {
             return new Electric();
         }
 
-        private MusicalInstrument createAcousticGuitar()
+        protected virtual MusicalInstrument CreateAcousticGuitar()
         {
             return new Acoustic();
         }
 
-        private MusicalInstrument createBassGuitar()
+        protected virtual MusicalInstrument CreateBassGuitar()
         {
             return new Bass();
         }
 
-        private MusicalInstrument createSynthesizer()
+        protected virtual MusicalInstrument CreateSynthesizer()
         {
             return new Synthesizer();
         }
 
-        public MusicalInstrument create(string key)
+        public MusicalInstrument Create(string key)
         {
-            return instrumentDictionary[key].Invoke();
+            return _instrumentDictionary[key].Invoke();
         }
 
-        public List<string> getInstrumentNameCollection()
+        public List<string> GetInstrumentNameCollection()
         {
-            return instrumentDictionary.Keys.ToList();
+            return _instrumentDictionary.Keys.ToList();
         }
 
-        public void iniitializeInstrumen()
+        public void IniitializeInstrumen()
         {
 
         }

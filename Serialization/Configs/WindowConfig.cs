@@ -10,11 +10,11 @@ namespace Serialization.Configs
 {
     class WindowConfig
     {
-        private readonly string configFilePath = "..\\..\\Configs\\windowConfig.xml";
+        private readonly string _configFilePath = "..\\..\\Configs\\windowConfig.xml";
 
-        public string getValue(string property)
+        public string GetValue(string property)
         {
-            var configFile = XDocument.Load(configFilePath);
+            var configFile = XDocument.Load(_configFilePath);
 
             throw new NotImplementedException();   
         }

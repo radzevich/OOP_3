@@ -9,14 +9,14 @@ namespace Serialization.Serializator
 {
     class Serializator
     {
-        private BinaryFormatter formatter;
+        private BinaryFormatter _formatter;
 
         public void Serialize(object obj, string path)
         {           
             // получаем поток, куда будем записывать сериализованный объект
             using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, obj);
+                _formatter.Serialize(fs, obj);
             }
         }
 
@@ -26,14 +26,14 @@ namespace Serialization.Serializator
             // десериализация из файла people.dat
             using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
             {
-                deserialized = formatter.Deserialize(fs);
+                deserialized = _formatter.Deserialize(fs);
             }
             return deserialized;
         }
 
         public Serializator()
         {
-            formatter = new BinaryFormatter();
+            _formatter = new BinaryFormatter();
         }
     }
 }

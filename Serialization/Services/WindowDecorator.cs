@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
-using Serialization.Structure.Instrument;
 using Serialization.Structure;
 using System.Windows;
 
@@ -8,29 +7,27 @@ namespace Serialization.Services
 {
     public class WindowDecorator
     {
-        private Window window; 
-
-        public virtual Grid getWindowStructure(Window window)
+        public virtual Grid GetWindowStructure(Window window)
         {
             var mainGrid = new Grid() { Name = "MainGrid", Height = window.Height, Width = window.Width };  
-            mainGrid.RowDefinitions.Add(createRowDefinition(90, mainGrid));
-            mainGrid.RowDefinitions.Add(createRowDefinition(10, mainGrid));
+            mainGrid.RowDefinitions.Add(CreateRowDefinition(90, mainGrid));
+            mainGrid.RowDefinitions.Add(CreateRowDefinition(10, mainGrid));
 
             var workGrid = new Grid() { Name = "WorkGrid", Height = mainGrid.RowDefinitions[0].Height.Value, Width = mainGrid.Width };   
-            workGrid.ColumnDefinitions.Add(createColumnDefinition(50, workGrid));
-            workGrid.ColumnDefinitions.Add(createColumnDefinition(50, workGrid));
+            workGrid.ColumnDefinitions.Add(CreateColumnDefinition(50, workGrid));
+            workGrid.ColumnDefinitions.Add(CreateColumnDefinition(50, workGrid));
 
             var editGrid = new Grid() { Name = "EditGrid", Width = workGrid.ColumnDefinitions[0].Width.Value, Height = workGrid.Height };
-            editGrid.ColumnDefinitions.Add(createColumnDefinition());
-            editGrid.ColumnDefinitions.Add(createColumnDefinition());
+            editGrid.ColumnDefinitions.Add(CreateColumnDefinition());
+            editGrid.ColumnDefinitions.Add(CreateColumnDefinition());
 
             var listBox = new ListBox() { Name = "ListBox", Width = workGrid.ColumnDefinitions[1].Width.Value, Height = workGrid.Height };
             
             var buttonsGrid = new Grid() { Name = "ButtonsGrid", Height = mainGrid.RowDefinitions[1].Height.Value, Width = mainGrid.Width };
-            buttonsGrid.ColumnDefinitions.Add(createColumnDefinition(25, workGrid));
-            buttonsGrid.ColumnDefinitions.Add(createColumnDefinition(25, workGrid));
-            buttonsGrid.ColumnDefinitions.Add(createColumnDefinition(25, workGrid));
-            buttonsGrid.ColumnDefinitions.Add(createColumnDefinition(25, workGrid));
+            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(25, workGrid));
+            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(25, workGrid));
+            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(25, workGrid));
+            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(25, workGrid));
 
             var addButton = new Button { Name = "AddButton" };
             var serializeButton = new Button { Name = "SerializeButton" };
@@ -56,78 +53,71 @@ namespace Serialization.Services
             return mainGrid;
         }
 
-        protected RowDefinition createRowDefinition()
+        protected RowDefinition CreateRowDefinition()
         {
-            var rowDefinition = new RowDefinition();
+            var rowDefinition = new RowDefinition { Height = GridLength.Auto };
 
-            rowDefinition.Height = GridLength.Auto;
 
             return rowDefinition;
         }
 
-        protected RowDefinition createRowDefinition(double height)
+        protected RowDefinition CreateRowDefinition(double height)
         {
-            var rowDefinition = new RowDefinition();
-
-            rowDefinition.Height = new GridLength(height);
+            var rowDefinition = new RowDefinition { Height = new GridLength(height) };
 
             return rowDefinition;
         }
 
-        protected RowDefinition createRowDefinition(double percent, Grid parent)
+        protected RowDefinition CreateRowDefinition(double percent, Grid parent)
         {
-            return createRowDefinition(parent.Height * percent / 100);
+            return CreateRowDefinition(parent.Height * percent / 100);
         }
 
-        protected ColumnDefinition createColumnDefinition()
+        protected ColumnDefinition CreateColumnDefinition()
         {
-            var columnDefinition = new ColumnDefinition();
-
-            columnDefinition.Width = GridLength.Auto;
+            var columnDefinition = new ColumnDefinition { Width = GridLength.Auto };
 
             return columnDefinition;
         }
 
-        protected ColumnDefinition createColumnDefinition(double height)
+        protected ColumnDefinition CreateColumnDefinition(double height)
         {
-            var columnDefinition = new ColumnDefinition();
-
-            columnDefinition.Width = new GridLength(height);
+            var columnDefinition = new ColumnDefinition { Width = new GridLength(height) };
 
             return columnDefinition;
         }
 
-        protected ColumnDefinition createColumnDefinition(double percent, Grid parent)
+        protected ColumnDefinition CreateColumnDefinition(double percent, Grid parent)
         {
-            return createColumnDefinition(parent.Width * percent / 100);
+            return CreateColumnDefinition(parent.Width * percent / 100);
         }
 
 
-        public virtual void setWindowStyle(Window window)
+        public virtual void SetWindowStyle(Window window)
         {
             
         }
 
-        public virtual void intializeWindowFields()
+        public virtual void IntializeWindowFields()
         {
 
         }
 
-        public List<ComboBox> getComboBoxList(IDescription item)
+        public List<ComboBox> GetComboBoxList(IDescription item)
         {
             var comboBoxList = new List<ComboBox>();
 
-            foreach (Description description in item.getDescription())
+            foreach (var description in item.GetDescription())
             {
                 var comboBox = new ComboBox();
-                initializeComboBox(comboBox, description);
+                InitializeComboBox(comboBox, description);
                 comboBoxList.Add(comboBox);
             }
 
             return comboBoxList;
         }
 
-        private void initializeComboBox(ComboBox comboBox, Description description)
+        private void InitializeComboBox(ComboBox comboBox, Description description)
         {
             
         }

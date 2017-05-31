@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Serialization.Structure.Instrument;
 using Serialization.Services;
 using Microsoft.Win32;
 using System;
@@ -13,7 +12,7 @@ namespace Serialization
     /// </summary>
     public partial class MainWindow : Window
     {
-        private WindowDecorator windowDecorator;
+        private WindowDecorator _windowDecorator;
 
         public MainWindow()
         {
@@ -21,7 +20,7 @@ namespace Serialization
             {
                 InitializeComponent();
 
-                initializeStructure();
+                InitializeStructure();
             }
             catch (Exception exc)
             {
@@ -29,11 +28,11 @@ namespace Serialization
             }
         }
 
-        private void initializeStructure()
+        private void InitializeStructure()
         {
-            windowDecorator = new WindowDecorator();
+            _windowDecorator = new WindowDecorator();
             Content = new Grid();
-            (Content as Grid).Children.Add(windowDecorator.getWindowStructure(this));
+            (Content as Grid).Children.Add(_windowDecorator.GetWindowStructure(this));
         }
 
     }

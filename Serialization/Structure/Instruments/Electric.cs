@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Serialization.Structure.Instrument
+namespace Serialization.Structure.Instruments
 {
     [Serializable]
     class Electric : Guitar
     {
-        public Description pickups { get; set; } = new Description();
+        public Description Pickups { get; set; } = new Description();
 
 
-        public override List<Description> getDescription()
+        public override List<Description> GetDescription()
         {
-            var baseDescriptionList = base.getDescription();
+            var baseDescriptionList = base.GetDescription();
 
-            baseDescriptionList.Add(pickups);
+            baseDescriptionList.Add(Pickups);
 
             return baseDescriptionList;
         }
