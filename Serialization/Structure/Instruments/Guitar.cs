@@ -14,7 +14,7 @@ namespace Serialization.Structure.Instruments
             {
                 var baseDescriptionList = base.GetDescription();
  
-                baseDescriptionList.Add(Material);
+                baseDescriptionList.AddRange(Material.GetDescription());
 
                 return baseDescriptionList;
             }

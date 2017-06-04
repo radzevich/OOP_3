@@ -14,7 +14,7 @@ namespace Serialization.Structure.Instruments
             {
                 var baseDescriptionList = base.GetDescription();
 
-                baseDescriptionList.Add(KeynNumber);
+                baseDescriptionList.AddRange(KeynNumber.GetDescription());
 
                 return baseDescriptionList;
             }

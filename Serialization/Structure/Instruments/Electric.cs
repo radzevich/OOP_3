@@ -13,7 +13,7 @@ namespace Serialization.Structure.Instruments
         {
             var baseDescriptionList = base.GetDescription();
 
-            baseDescriptionList.Add(Pickups);
+            baseDescriptionList.AddRange(Pickups.GetDescription());
 
             return baseDescriptionList;
         }

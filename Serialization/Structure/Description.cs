@@ -12,9 +12,8 @@ namespace Serialization.Structure
 
         public virtual List<Description> GetDescription()
         {
-            var descriptionList = new List<Description>();
+            var descriptionList = new List<Description> {this};
 
-            descriptionList.Add(this);
             return descriptionList;
         }
     }

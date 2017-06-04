@@ -119,7 +119,7 @@ namespace Serialization.Services
 
         private void InitializeComboBox(ComboBox comboBox, Description description)
         {
-            
+            Co
         }
     }
 }
