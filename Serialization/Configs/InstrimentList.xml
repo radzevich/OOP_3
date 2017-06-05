@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Instruments>
-  <Instrument type="Electric" name="Электрогитара">
-    <Definition type="Country" name="Страна"></Definition>
-    <Definition type="Company" name="Производитель"></Definition>
-    <Definition type="Model" name="Модель"></Definition>
-    <Definition type="Pickups" name="Звукосниматели"></Definition>
-  </Instrument>
+  <Electric type="Electric" name="Электрогитара">
+    <сountry name="Страна"></сountry>
+    <сompany name="Производитель"></сompany>
+    <model name="Модель"></model>
+    <pickups name="Звукосниматели"></pickups>
+  </Electric>
 
-  <Instrument type="Acoustic" name="Акустическая гитара">
-    <Definition type="Country" name="Страна"></Definition>
-    <Definition type="Company" name="Производитель"></Definition>
-    <Definition type="Model"  name="Модель"></Definition>
-    <Definition type="BackMaterial" name="Задняя дека"></Definition>
-  </Instrument>
+  <Acoustic type="Acoustic" name="Акустическая гитара">
+    <сountry name="Страна"></сountry>
+    <сompany name="Производитель"></сompany>
+    <model name="Модель"></model>
+    <backMaterial name="Задняя дека"></backMaterial>
+  </Acoustic>
 
-  <Instrument type="Bas" name="Бас-гитара">
-    <Definition type="Country" name="Страна"></Definition>
-    <Definition type="Company" name="Производитель"> </Definition>
-    <Definition type="Model" name="Модель"></Definition>
-    <Definition type="StringNumber" name="Количество струн"></Definition>
-  </Instrument>
+  <Bas type="Bas" name="Бас-гитара">
+    <сountry name="Страна"></сountry>
+    <сompany name="Производитель"></сompany>
+    <model name="Модель"></model>
+    <stringNumber name="Количество струн"></stringNumber>
+  </Bas>
 
-  <Instrument type="Synthesizer" name="Синтезатор">
-    <Definition type="Country" name="Страна"></Definition>
-    <Definition type="Company" name="Производитель"> </Definition>
-    <Definition type="Model" name="Модель"></Definition>
-    <Definition type="KeyNumber" name="Количество клавиш"></Definition>
-  </Instrument>
+  <Synthesizer type="Synthesizer" name="Синтезатор">
+    <сountry name="Страна"></сountry>
+    <сompany name="Производитель"></сompany>
+    <model name="Модель"></model>
+    <keyNumber name="Количество клавиш"></keyNumber>
+  </Synthesizer>
 </Instruments>
