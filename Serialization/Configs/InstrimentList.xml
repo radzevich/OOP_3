@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Instruments>
-  <Electric type="Electric" name="Электрогитара">
+  <Electric value="Электрогитара">
     <сountry name="Страна"></сountry>
     <сompany name="Производитель"></сompany>
     <model name="Модель"></model>
     <pickups name="Звукосниматели"></pickups>
   </Electric>
 
-  <Acoustic type="Acoustic" name="Акустическая гитара">
+  <Acoustic value="Акустическая гитара">
     <сountry name="Страна"></сountry>
     <сompany name="Производитель"></сompany>
     <model name="Модель"></model>
     <backMaterial name="Задняя дека"></backMaterial>
   </Acoustic>
 
-  <Bas type="Bas" name="Бас-гитара">
+  <Bas value="Бас-гитара">
     <сountry name="Страна"></сountry>
     <сompany name="Производитель"></сompany>
     <model name="Модель"></model>
     <stringNumber name="Количество струн"></stringNumber>
   </Bas>
 
-  <Synthesizer type="Synthesizer" name="Синтезатор">
+  <Synthesizer value="Синтезатор">
     <сountry name="Страна"></сountry>
     <сompany name="Производитель"></сompany>
     <model name="Модель"></model>

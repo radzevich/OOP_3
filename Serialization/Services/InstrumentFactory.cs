@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using Serialization.Configs;
 using Serialization.Structure;
 using Serialization.Structure.Instruments;
 
@@ -7,13 +10,15 @@ namespace Serialization.Services
 {
     public class InstrumentFactory
     {
-        private delegate MusicalInstrument CreateInstrumentDelegate();
-
-        private readonly Dictionary<string, CreateInstrumentDelegate> _instrumentDictionary = new Dictionary<string, CreateInstrumentDelegate>();
+        private readonly Dictionary<string, ConstructorInfo> _instrumentDictionary;
+        private InstrumentViewer _instrumentViewer;
 
         public InstrumentFactory()
         {
-            CreateInstrumentDictionary();
+            _instrumentViewer = new InstrumentViewer();
+            _instrumentDictionary = new Dictionary<string, ConstructorInfo>();
+
+            InitializeDictionary();
         }
 
         protected void CreateFields(MusicalInstrument instrument)
@@ -21,12 +26,45 @@ namespace Serialization.Services
 
         }
 
-        private void CreateInstrumentDictionary()
+        private void InitializeDictionary()
         {
-            _instrumentDictionary.Add((new Electric()).GetDescription()[0].Value, CreateElectricGuitar);
-            _instrumentDictionary.Add((new Acoustic()).GetDescription()[0].Value, CreateAcousticGuitar);
-            _instrumentDictionary.Add((new Bass()).GetDescription()[0].Value, CreateBassGuitar);
-            _instrumentDictionary.Add((new Synthesizer()).GetDescription()[0].Value, CreateSynthesizer);
+            AddToDictionary(typeof(Electric));
+            AddToDictionary(typeof(Bass));
+            AddToDictionary(typeof(Acoustic));
+            AddToDictionary(typeof(Synthesizer));
+        }
+
+        private void AddToDictionary(Type type)
+        {
+            _instrumentDictionary.Add(type.Name, type.GetConstructor(Type.EmptyTypes));   
+        }
+
+        public MusicalInstrument initializeInstrument(Dictionary<string, string> fields)
+        {
+            var instrument = CreateInstrument(_instrumentViewer.GetElementThroughValue(fields.First().Value));
+
+            for (int i = 1; i < fields.Count; i++)
+            {
+                var item = fields.ElementAt(i);
+                InitializeField(instrument, item.Key, item.Value);
+            }
+
+            return instrument;
+        }
+
+        public void InitializeField(MusicalInstrument instrument, string name, string value)
+        {
+            var fieldInfo = instrument.GetType().GetField(name);
+            fieldInfo.SetValue(instrument, value);
+        }
+
+        private MusicalInstrument CreateInstrument(string name)
+        {
+            var instrument = (MusicalInstrument)_instrumentDictionary["name"].Invoke(new object[] { }) ;
+
+            instrument.Value = name;
+
+            return instrument;
         }
 
         protected virtual MusicalInstrument CreateElectricGuitar()
@@ -59,7 +97,7 @@ namespace Serialization.Services
             return _instrumentDictionary.Keys.ToList();
         }
 
-        public void IniitializeInstrumen()
+        public void IniitializeInstrument()
         {
 
         }

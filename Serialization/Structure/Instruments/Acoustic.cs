@@ -6,15 +6,11 @@ namespace Serialization.Structure.Instruments
     [Serializable]
     internal class Acoustic : Guitar
     {
-        public Description BackMaterial { get; set; } = new Description();
+        public Description BackMaterial { get; set; }
 
-        public override List<Description> GetDescription()
+        public Acoustic() : base()
         {
-            var baseDescriptionList = base.GetDescription();
-
-            baseDescriptionList.AddRange(BackMaterial.GetDescription());
-
-            return baseDescriptionList;
+            BackMaterial = new Description();
         }
     }
 }

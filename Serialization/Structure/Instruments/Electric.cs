@@ -6,16 +6,11 @@ namespace Serialization.Structure.Instruments
     [Serializable]
     class Electric : Guitar
     {
-        public Description Pickups { get; set; } = new Description();
+        public Description Pickups { get; set; }
 
-
-        public override List<Description> GetDescription()
+        public Electric() : base()
         {
-            var baseDescriptionList = base.GetDescription();
-
-            baseDescriptionList.AddRange(Pickups.GetDescription());
-
-            return baseDescriptionList;
+            Pickups = new Description();
         }
     }
 }

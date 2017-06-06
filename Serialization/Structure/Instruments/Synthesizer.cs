@@ -6,18 +6,11 @@ namespace Serialization.Structure.Instruments
     [Serializable]
     internal class Synthesizer : MusicalInstrument
     {
-        public Description KeynNumber { get; set; } = new Description();
+        public Description KeynNumber { get; set; }
 
-
-        public override List<Description> GetDescription()
+        public Synthesizer()
         {
-            {
-                var baseDescriptionList = base.GetDescription();
-
-                baseDescriptionList.AddRange(KeynNumber.GetDescription());
-
-                return baseDescriptionList;
-            }
+            KeynNumber = new Description();
         }
     }
 }

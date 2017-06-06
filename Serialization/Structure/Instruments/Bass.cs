@@ -6,16 +6,11 @@ namespace Serialization.Structure.Instruments
     [Serializable]
     class Bass : Guitar
     {
-        public Description StringNumber { get; set; } = new Description();
+        public Description StringNumber { get; set; }
 
-
-        public override List<Description> GetDescription()
+        public Bass() : base()
         {
-            var baseDescriptionList = base.GetDescription();
-
-            baseDescriptionList.AddRange(StringNumber.GetDescription());
-
-            return baseDescriptionList;
+            StringNumber = new Description();
         }
     }
 }

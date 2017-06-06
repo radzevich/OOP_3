@@ -6,18 +6,11 @@ namespace Serialization.Structure.Instruments
     [Serializable]
     internal abstract class Guitar : MusicalInstrument
     {
-        public Description Material { get; set; } = new Description();
+        public Description Material { get; set; }
 
-
-        public override List<Description> GetDescription()
+        protected Guitar() : base()
         {
-            {
-                var baseDescriptionList = base.GetDescription();
- 
-                baseDescriptionList.AddRange(Material.GetDescription());
-
-                return baseDescriptionList;
-            }
+            Material = new Description();
         }
     }
 }
