@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using Serialization.Services;
 using Microsoft.Win32;
 using System;
+using System.ComponentModel;
 using Serialization.Structure.Instruments;
 
 namespace Serialization
@@ -13,9 +14,13 @@ namespace Serialization
     /// </summary>
     public partial class MainWindow : Window
     {
+        public delegate void ListChangedEventHandler();
+        public event ListChangedEventHandler ListChanged;
+        public ListBox ObjectListBox;
+
         private List<ItemInfo> _itemInfo = new List<ItemInfo>();
         private MusicalInstrument _instrument;
-        private List<MusicalInstrument> Instruments = new List<MusicalInstrument>();
+        private List<MusicalInstrument> _instruments = new List<MusicalInstrument>();
 
         public MainWindow()
         {
@@ -41,8 +46,12 @@ namespace Serialization
             else
                 _itemInfo = instrumentViewer.GetInstrumentInfo(instrumentViewer.GetFirstTypeName());
 
+            _itemInfo[0].Value = name;
+
             Content = new Grid();
             ((Grid) Content).Children.Add(windowDecorator.GetWindowContent(this, _itemInfo));
+
+            ListChanged();
 
             //_windowDecorator.Initialize();
         }
@@ -100,16 +109,22 @@ namespace Serialization
 
         public void SerializeButtonClicked(object sender, EventArgs e)
         {
-            var serializer = new Serializer();
-
-            serializer.Serialize(Instruments, GetPathToSave());
+            Serialize();
         }
 
         public void DeserializeButtonClicked(object sender, EventArgs e)
         {
-            var serializer = new Serializer();
+            Deserialize();
+        }
 
-            Instruments = (List<MusicalInstrument>) serializer.Deserialize(GetPathToLoad());
+        protected virtual void OnListChanged()
+        {
+            ListChanged?.Invoke();
+        }
+
+        public void ListBox_ListChanged()
+        {
+            InitializeListBox();
         }
 
         #endregion
@@ -121,17 +136,34 @@ namespace Serialization
         {
             var instrument = new InstrumentFactory().Create(_itemInfo);
 
-            Instruments.Add(instrument);
+            _instruments.Add(instrument);
+            
+            OnListChanged();
         }
 
         private void RemoveFromList()
         {
-            Instruments.Remove(_instrument);
+            _instruments.Remove(_instrument);
+
+            OnListChanged();
         }
 
-        private void SerializeeFromList()
+        private void Serialize()
         {
-            Instruments.Remove(_instrument);
+            var serializer = new Serializer();
+
+            serializer?.Serialize(_instruments, GetPathToSave());
+
+            OnListChanged();
+        }
+
+        private void Deserialize()
+        {
+            var serializer = new Serializer();
+
+            _instruments = (List<MusicalInstrument>)serializer?.Deserialize(GetPathToLoad());
+
+            OnListChanged();
         }
 
         private string GetPathToLoad()
@@ -154,6 +186,17 @@ namespace Serialization
             }
         }
 
+        private void InitializeListBox()
+        {
+            ObjectListBox.Items.Clear();
+            
+            foreach (MusicalInstrument instrument in _instruments)
+            {
+                ObjectListBox.Items.Add(instrument.Value);
+            }
+        }
+
     #endregion
+
     }
 }

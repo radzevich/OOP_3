@@ -24,8 +24,10 @@ namespace Serialization.Services
             editGrid.ColumnDefinitions.Add(CreateColumnDefinition(60, editGrid));
             Initialize(window, editGrid, itemInfo);
 
-            var listBox = new ListBox() { Name = "ListBox", Width = workGrid.ColumnDefinitions[1].Width.Value, Height = workGrid.Height };
-            
+            var listBox = new ListBox() { Name = "ObjectList", Width = workGrid.ColumnDefinitions[1].Width.Value, Height = workGrid.Height };
+            ((MainWindow) window).ListChanged += ((MainWindow) window).ListBox_ListChanged;
+            ((MainWindow) window).ObjectListBox = listBox;
+
             var buttonsGrid = new Grid() { Name = "ButtonsGrid", Height = mainGrid.RowDefinitions[1].Height.Value, Width = mainGrid.Width };
             buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
             buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));

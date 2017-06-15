@@ -1,42 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MusicalInstrument name="Инструмент">
   <Electric value="Электрогитара">
-    <сountry name="Страна">
+    <Country name="Страна">
       <item value ="США"/>
       <item value ="Япония"/>
-    </сountry>
-    <сompany name="Производитель">
+    </Country>
+    <Company name="Производитель">
       <item value ="Gibson"/>
       <item value ="Fender"/>
-    </сompany>
-    <model name="Модель">
+    </Company>
+    <Model name="Модель">
       <item value ="Les Paul"/>
       <item value ="Stratocaster"/>
-    </model>
-    <pickups name="Звукосниматели">
+    </Model>
+    <Pickups name="Звукосниматели">
       <item value ="Пассивные"/>
       <item value ="Активные"/>
-    </pickups>
+    </Pickups>
   </Electric>
 
   <Acoustic value="Акустическая гитара">
-    <сountry name="Страна"></сountry>
-    <сompany name="Производитель"></сompany>
-    <model name="Модель"></model>
-    <backMaterial name="Задняя дека"></backMaterial>
+    <Country name="Страна"></Country>
+    <Company name="Производитель"></Company>
+    <Model name="Модель"></Model>
+    <BackMaterial name="Задняя дека"></BackMaterial>
   </Acoustic>
 
-  <Bas value="Бас-гитара">
-    <сountry name="Страна"></сountry>
-    <сompany name="Производитель"></сompany>
-    <model name="Модель"></model>
-    <stringNumber name="Количество струн"></stringNumber>
-  </Bas>
+  <Bass value="Бас-гитара">
+    <Country name="Страна"></Country>
+    <Company name="Производитель"></Company>
+    <Model name="Модель"></Model>
+    <StringNumber name="Количество струн"></StringNumber>
+  </Bass>
 
   <Synthesizer value="Синтезатор">
-    <сountry name="Страна"></сountry>
-    <сompany name="Производитель"></сompany>
-    <model name="Модель"></model>
-    <keyNumber name="Количество клавиш"></keyNumber>
+    <Country name="Страна"></Country>
+    <Company name="Производитель"></Company>
+    <Model name="Модель"></Model>
+    <KeyNumber name="Количество клавиш"></KeyNumber>
   </Synthesizer>
 </MusicalInstrument>

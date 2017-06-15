@@ -8,21 +8,27 @@ namespace Serialization.Services
         private readonly BinaryFormatter _formatter;
 
         public void Serialize(object obj, string path)
-        {           
-            // получаем поток, куда будем записывать сериализованный объект
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+        {
+            if (path.Length > 0)
             {
-                _formatter.Serialize(fs, obj);
+                // получаем поток, куда будем записывать сериализованный объект
+                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    _formatter.Serialize(fs, obj);
+                }
             }
         }
 
         public object Deserialize(string path)
         {
-            object deserialized;
-            // десериализация из файла people.dat
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+            object deserialized = null;
+            if (path.Length > 0)
             {
-                deserialized = _formatter.Deserialize(fs);
+                // десериализация из файла people.dat
+                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    deserialized = _formatter.Deserialize(fs);
+                }
             }
             return deserialized;
         }

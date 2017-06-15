@@ -43,23 +43,21 @@ namespace Serialization.Services
             for (int i = 1; i < itemInfo.Count; i++)
             {
                 var item = itemInfo.ElementAt(i);
-                InitializeField(instrument, item.Type, item.Items[0]);
+                InitializeField(instrument, item.Type, item.Value);
             }
         }
 
         //Initializes certain field.
         private void InitializeField(MusicalInstrument instrument, string name, string value)
         {
-            var fieldInfo = instrument.GetType().GetField(name);
-            fieldInfo.SetValue(instrument, value);
+            var fieldInfo = instrument.GetType().GetProperty(name);
+            fieldInfo.SetValue(instrument, new Description() { Value = value });
         }
 
         //Creates empty instrument object.
         private MusicalInstrument Create(string name)
         {
-            var instrument = (MusicalInstrument)_instrumentDictionary["name"].Invoke(new object[] { });
-
-            instrument.Value = name;
+            var instrument = (MusicalInstrument)_instrumentDictionary[name].Invoke(new object[] { });
 
             return instrument;
         }
@@ -67,6 +65,8 @@ namespace Serialization.Services
         public MusicalInstrument Create(List<ItemInfo> itemInfo)
         {
             var instrument = Create(itemInfo[0].Type);
+
+            instrument.Value = itemInfo.First().Value;
 
             InitializeInstrument(instrument, itemInfo);
 

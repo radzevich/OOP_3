@@ -6,11 +6,11 @@ namespace Serialization.Structure.Instruments
     [Serializable]
     internal class Synthesizer : MusicalInstrument
     {
-        public Description KeynNumber { get; set; }
+        public Description KeyNumber { get; set; }
 
         public Synthesizer()
         {
-            KeynNumber = new Description();
+            KeyNumber = new Description();
         }
     }
 }
