@@ -1,10 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Instruments>
+<MusicalInstrument name="Инструмент">
   <Electric value="Электрогитара">
-    <сountry name="Страна"></сountry>
-    <сompany name="Производитель"></сompany>
-    <model name="Модель"></model>
-    <pickups name="Звукосниматели"></pickups>
+    <сountry name="Страна">
+      <item value ="США"/>
+      <item value ="Япония"/>
+    </сountry>
+    <сompany name="Производитель">
+      <item value ="Gibson"/>
+      <item value ="Fender"/>
+    </сompany>
+    <model name="Модель">
+      <item value ="Les Paul"/>
+      <item value ="Stratocaster"/>
+    </model>
+    <pickups name="Звукосниматели">
+      <item value ="Пассивные"/>
+      <item value ="Активные"/>
+    </pickups>
   </Electric>
 
   <Acoustic value="Акустическая гитара">
@@ -27,4 +39,4 @@
     <model name="Модель"></model>
     <keyNumber name="Количество клавиш"></keyNumber>
   </Synthesizer>
-</Instruments>
+</MusicalInstrument>

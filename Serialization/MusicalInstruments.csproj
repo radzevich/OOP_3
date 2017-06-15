@@ -71,11 +71,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Configs\InstrumentViewer.cs" />
+    <Compile Include="Services\InstrumentViewer.cs" />
     <Compile Include="Configs\WindowConfig.cs" />
     <Compile Include="Services\FileReader.cs" />
-    <Compile Include="Serializator\Serializator.cs" />
+    <Compile Include="Services\Serializator.cs" />
     <Compile Include="Services\InstrumentFactory.cs" />
+    <Compile Include="Services\ItemInfo.cs" />
     <Compile Include="Services\WindowDecorator.cs" />
     <Compile Include="Structure\Instruments\Acoustic.cs" />
     <Compile Include="Structure\Instruments\Bass.cs" />
@@ -145,7 +146,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Configs\InstrimentList.xml" />
+    <Resource Include="Entities\InstrimentList.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

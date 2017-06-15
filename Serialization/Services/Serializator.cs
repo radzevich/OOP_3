@@ -1,15 +1,11 @@
-﻿using Microsoft.Win32;
-using Serialization.Structure;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows;
 
-namespace Serialization.Serializator
+namespace Serialization.Services
 {
     class Serializator
     {
-        private BinaryFormatter _formatter;
+        private readonly BinaryFormatter _formatter;
 
         public void Serialize(object obj, string path)
         {           

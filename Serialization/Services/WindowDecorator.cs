@@ -2,11 +2,13 @@
 using System.Windows.Controls;
 using Serialization.Structure;
 using System.Windows;
+using Serialization.Configs;
 
 namespace Serialization.Services
 {
     public class WindowDecorator
     {
+        //***************************************************MAIN WINDOW STRUCTURE CREATING**************************************************************\\
         public virtual Grid GetWindowStructure(Window window)
         {
             var mainGrid = new Grid() { Name = "MainGrid", Height = window.Height, Width = window.Width };  
@@ -98,28 +100,32 @@ namespace Serialization.Services
             
         }
 
-        public virtual void IntializeWindowFields()
+        //***************************************************MAIN WINDOW STRUCTURE CREATING**************************************************************\\
+
+        //***************************************************INITIALIZTION OF WINDOW FIELDS***************************************************************\\
+
+        private void Initialize(string instrumentName)
         {
+            var viewer = new InstrumentViewer();
+            var header = viewer.GetElementThroughValue(instrumentName);
+
+            var fields = viewer.GetSubnodes(header);
+
 
         }
 
-        public List<ComboBox> GetComboBoxList(IDescription item)
+        private ComboBox createMainComboBox()
         {
-            var comboBoxList = new List<ComboBox>();
-
-            foreach (var description in item.GetDescription())
-            {
-                var comboBox = new ComboBox();
-                InitializeComboBox(comboBox, description);
-                comboBoxList.Add(comboBox);
-            }
-
-            return comboBoxList;
+            
+        }
+        private void initializeInstrumentSelectField(string name)
+        {
+            
         }
 
         private void InitializeComboBox(ComboBox comboBox, Description description)
         {
-            Co
+            
         }
     }
 }

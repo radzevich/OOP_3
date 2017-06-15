@@ -11,7 +11,7 @@ namespace Serialization.Services
     public class InstrumentFactory
     {
         private readonly Dictionary<string, ConstructorInfo> _instrumentDictionary;
-        private InstrumentViewer _instrumentViewer;
+        private readonly InstrumentViewer _instrumentViewer;
 
         public InstrumentFactory()
         {
@@ -39,33 +39,47 @@ namespace Serialization.Services
             _instrumentDictionary.Add(type.Name, type.GetConstructor(Type.EmptyTypes));   
         }
 
-        public MusicalInstrument initializeInstrument(Dictionary<string, string> fields)
+        #region Factory
+
+        //Initializes instrument object with properties getting from view.
+        private void InitializeInstrument(MusicalInstrument instrument, List<ItemInfo> itemInfo)
         {
-            var instrument = CreateInstrument(_instrumentViewer.GetElementThroughValue(fields.First().Value));
-
-            for (int i = 1; i < fields.Count; i++)
+            for (int i = 1; i < itemInfo.Count; i++)
             {
-                var item = fields.ElementAt(i);
-                InitializeField(instrument, item.Key, item.Value);
+                var item = itemInfo.ElementAt(i);
+                InitializeField(instrument, item.Type, item.Items[0]);
             }
-
-            return instrument;
         }
 
-        public void InitializeField(MusicalInstrument instrument, string name, string value)
+        //Initializes certain field.
+        private void InitializeField(MusicalInstrument instrument, string name, string value)
         {
             var fieldInfo = instrument.GetType().GetField(name);
             fieldInfo.SetValue(instrument, value);
         }
 
-        private MusicalInstrument CreateInstrument(string name)
+        //Creates empty instrument object.
+        private MusicalInstrument Create(string name)
         {
-            var instrument = (MusicalInstrument)_instrumentDictionary["name"].Invoke(new object[] { }) ;
+            var instrument = (MusicalInstrument)_instrumentDictionary["name"].Invoke(new object[] { });
 
             instrument.Value = name;
 
             return instrument;
         }
+
+        public MusicalInstrument Create(List<ItemInfo> itemInfo)
+        {
+            var instrument = Create(itemInfo[0].Type);
+
+            InitializeInstrument(instrument, itemInfo);
+
+            return instrument;
+        }
+
+        #endregion
+
+        #region BasicInstrumentConstructors
 
         protected virtual MusicalInstrument CreateElectricGuitar()
         {
@@ -87,10 +101,7 @@ namespace Serialization.Services
             return new Synthesizer();
         }
 
-        public MusicalInstrument Create(string key)
-        {
-            return _instrumentDictionary[key].Invoke();
-        }
+        #endregion
 
         public List<string> GetInstrumentNameCollection()
         {
