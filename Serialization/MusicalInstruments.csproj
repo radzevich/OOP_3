@@ -77,7 +77,7 @@
     <Compile Include="Services\Serializator.cs" />
     <Compile Include="Services\InstrumentFactory.cs" />
     <Compile Include="Services\ItemInfo.cs" />
-    <Compile Include="Services\WindowDecorator.cs" />
+    <Compile Include="Services\WindowFactory.cs" />
     <Compile Include="Structure\Instruments\Acoustic.cs" />
     <Compile Include="Structure\Instruments\Bass.cs" />
     <Compile Include="Structure\Instruments\Electric.cs" />

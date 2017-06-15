@@ -8,6 +8,8 @@ namespace Serialization.Services
 
         public string Name { get; set; }
 
+        public string Value { get; set; }
+
         public List<string> Items { get; set; }
     }
 }

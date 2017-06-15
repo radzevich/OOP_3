@@ -10,20 +10,19 @@ namespace Serialization.Services
 {
     public class InstrumentFactory
     {
+        #region Fields
+
         private readonly Dictionary<string, ConstructorInfo> _instrumentDictionary;
-        private readonly InstrumentViewer _instrumentViewer;
+
+        #endregion
+
+        #region FactoryConstrutor
 
         public InstrumentFactory()
         {
-            _instrumentViewer = new InstrumentViewer();
             _instrumentDictionary = new Dictionary<string, ConstructorInfo>();
 
             InitializeDictionary();
-        }
-
-        protected void CreateFields(MusicalInstrument instrument)
-        {
-
         }
 
         private void InitializeDictionary()
@@ -34,10 +33,7 @@ namespace Serialization.Services
             AddToDictionary(typeof(Synthesizer));
         }
 
-        private void AddToDictionary(Type type)
-        {
-            _instrumentDictionary.Add(type.Name, type.GetConstructor(Type.EmptyTypes));   
-        }
+        #endregion
 
         #region Factory
 
@@ -103,14 +99,15 @@ namespace Serialization.Services
 
         #endregion
 
-        public List<string> GetInstrumentNameCollection()
+        #region ExtensionInterface
+
+        //Allows to add new classes
+        public void AddToDictionary(Type type)
         {
-            return _instrumentDictionary.Keys.ToList();
+            _instrumentDictionary.Add(type.Name, type.GetConstructor(Type.EmptyTypes));
         }
 
-        public void IniitializeInstrument()
-        {
+        #endregion
 
-        }
     }
 }

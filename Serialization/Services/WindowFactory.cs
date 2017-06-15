@@ -6,10 +6,12 @@ using Serialization.Configs;
 
 namespace Serialization.Services
 {
-    public class WindowDecorator
+    public class WindowFactory
     {
-        //***************************************************MAIN WINDOW STRUCTURE CREATING**************************************************************\\
-        public virtual Grid GetWindowStructure(Window window)
+        private const string AddText = "добавить..";
+
+        #region WindowStructureCreating
+        public virtual Grid GetWindowContent(Window window, List<ItemInfo> itemInfo)
         {
             var mainGrid = new Grid() { Name = "MainGrid", Height = window.Height, Width = window.Width };  
             mainGrid.RowDefinitions.Add(CreateRowDefinition(90, mainGrid));
@@ -20,16 +22,17 @@ namespace Serialization.Services
             workGrid.ColumnDefinitions.Add(CreateColumnDefinition(50, workGrid));
 
             var editGrid = new Grid() { Name = "EditGrid", Width = workGrid.ColumnDefinitions[0].Width.Value, Height = workGrid.Height };
-            editGrid.ColumnDefinitions.Add(CreateColumnDefinition());
-            editGrid.ColumnDefinitions.Add(CreateColumnDefinition());
+            editGrid.ColumnDefinitions.Add(CreateColumnDefinition(40, editGrid));
+            editGrid.ColumnDefinitions.Add(CreateColumnDefinition(60, editGrid));
+            Initialize(editGrid, itemInfo);
 
             var listBox = new ListBox() { Name = "ListBox", Width = workGrid.ColumnDefinitions[1].Width.Value, Height = workGrid.Height };
             
             var buttonsGrid = new Grid() { Name = "ButtonsGrid", Height = mainGrid.RowDefinitions[1].Height.Value, Width = mainGrid.Width };
-            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(25, workGrid));
-            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(25, workGrid));
-            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(25, workGrid));
-            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(25, workGrid));
+            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
+            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
+            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
+            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
 
             var addButton = new Button { Name = "AddButton" };
             var serializeButton = new Button { Name = "SerializeButton" };
@@ -100,32 +103,63 @@ namespace Serialization.Services
             
         }
 
-        //***************************************************MAIN WINDOW STRUCTURE CREATING**************************************************************\\
+        #endregion
 
-        //***************************************************INITIALIZTION OF WINDOW FIELDS***************************************************************\\
+        #region WindowInitialization
 
-        private void Initialize(string instrumentName)
+        public void Initialize(Grid grid, List<ItemInfo> itemInfo)
         {
-            var viewer = new InstrumentViewer();
-            var header = viewer.GetElementThroughValue(instrumentName);
 
-            var fields = viewer.GetSubnodes(header);
+            foreach (var field in itemInfo)
+            {
+                var comboBox = CreateComboBox(field);
+                var label = CreateLabel(field);
 
+                InitializeComboBox(comboBox, field.Items);
+                
+                Grid.SetColumn(comboBox, 1);
+                Grid.SetColumn(label, 0);
+                Grid.SetRow(label, itemInfo.IndexOf(field));
+                Grid.SetRow(comboBox, itemInfo.IndexOf(field));
 
+                grid.RowDefinitions.Add(CreateRowDefinition(30));
+                grid.Children.Add(label);
+                grid.Children.Add(comboBox);
+            }
         }
 
-        private ComboBox createMainComboBox()
+        protected virtual ComboBox CreateComboBox(ItemInfo item)
         {
-            
-        }
-        private void initializeInstrumentSelectField(string name)
-        {
-            
+            var comboBox = new ComboBox
+            {
+                Name = item.Type,
+            };
+
+            if (item.Value != null)
+            {
+                comboBox.SelectedItem = item.Value;
+            }
+
+            return comboBox;
         }
 
-        private void InitializeComboBox(ComboBox comboBox, Description description)
+        protected virtual Label CreateLabel(ItemInfo item)
         {
-            
+            var label = new Label() { Content = item.Name };
+
+            return label;
         }
+
+        private void InitializeComboBox(ComboBox comboBox, IEnumerable<string> items)
+        {
+            foreach (string item in items)
+            {
+                comboBox.Items.Add(item);
+            }
+
+            comboBox.Items.Add(AddText);
+        }
+
+        #endregion
     }
 }

@@ -6,4 +6,44 @@
         xmlns:local="clr-namespace:Serialization"
         mc:Ignorable="d"
         Title="Музыкальные инструменты" Height="400" Width="1000"  >
+    <Window.Resources>
+        <!--TextBlock style description-->
+            <Style TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="2" />
+            </Style>
+            <!--ComboBox style description-->
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="Height" Value="25" />
+                <Setter Property="MinWidth" Value="150"></Setter>
+            </Style>
+            <!--ComboBox items style description-->
+            <Style TargetType="ComboBoxItem">
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="Padding" Value="2"/>
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!--TextBox style description-->
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="Height" Value="20" />
+            </Style>
+            <!--Button style description-->
+            <Style TargetType="Button">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Height" Value="20" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+    </Window.Resources>
 </Window>

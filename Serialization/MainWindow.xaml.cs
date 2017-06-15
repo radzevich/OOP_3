@@ -12,8 +12,6 @@ namespace Serialization
     /// </summary>
     public partial class MainWindow : Window
     {
-        private WindowDecorator _windowDecorator;
-
         public MainWindow()
         {
             try
@@ -30,9 +28,15 @@ namespace Serialization
 
         private void InitializeStructure()
         {
-            _windowDecorator = new WindowDecorator();
+            var windowDecorator = new WindowFactory();
+            var instrumentViewer = new InstrumentViewer();
+
             Content = new Grid();
-            (Content as Grid).Children.Add(_windowDecorator.GetWindowStructure(this));
+            ((Grid) Content).Children.Add(windowDecorator.GetWindowContent(this, instrumentViewer.GetInstrumentInfo("Electric")));
+
+            InitializeComponent();
+
+            //_windowDecorator.Initialize();
         }
 
     }

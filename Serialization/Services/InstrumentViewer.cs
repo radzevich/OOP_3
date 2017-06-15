@@ -13,7 +13,7 @@ namespace Serialization.Services
     {
         #region Properties
 
-        private const string FilePath = "..\\..\\Entities\\InstrumentList.xml";
+        private const string FilePath = "..\\..\\Entities\\InstrimentList.xml";
         private readonly XmlDocument _xDocument;
         private readonly XmlElement _xRoot;
 
@@ -35,6 +35,7 @@ namespace Serialization.Services
             {
                 Name = xNode.Attributes.GetNamedItem("name").Value,
                 Type = xNode.Name,
+                Value = null,
                 Items = (from XmlElement node in xNode.ChildNodes select node.Attributes.GetNamedItem("value").Value).ToList()
             };
         }
