@@ -74,7 +74,7 @@
     <Compile Include="Services\InstrumentViewer.cs" />
     <Compile Include="Configs\WindowConfig.cs" />
     <Compile Include="Services\FileReader.cs" />
-    <Compile Include="Services\Serializator.cs" />
+    <Compile Include="Services\Serializer.cs" />
     <Compile Include="Services\InstrumentFactory.cs" />
     <Compile Include="Services\ItemInfo.cs" />
     <Compile Include="Services\WindowFactory.cs" />

@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Serialization.Services
 {
-    class Serializator
+    class Serializer
     {
         private readonly BinaryFormatter _formatter;
 
@@ -27,7 +27,7 @@ namespace Serialization.Services
             return deserialized;
         }
 
-        public Serializator()
+        public Serializer()
         {
             _formatter = new BinaryFormatter();
         }

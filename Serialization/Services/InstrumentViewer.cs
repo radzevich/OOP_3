@@ -29,6 +29,20 @@ namespace Serialization.Services
             return (from XmlElement node in nodeList select node.Attributes.GetNamedItem("value").Value).ToList();
         }
 
+        public virtual string GetFirstTypeName()
+        {
+            return _xRoot.SelectSingleNode("*").Name;
+        }
+
+        public virtual string GetTypeThrowName(string name)
+        {
+            var type = from XmlElement node in _xRoot.ChildNodes
+                where node.Attributes.GetNamedItem("value").Value == name
+                select node.Name;
+
+            return type.First();
+        }
+
         protected virtual ItemInfo GetItemInfo(XmlNode xNode)
         {
             return new ItemInfo

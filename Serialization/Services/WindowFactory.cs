@@ -1,21 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
-using Serialization.Structure;
 using System.Windows;
-using Serialization.Configs;
 
 namespace Serialization.Services
 {
     public class WindowFactory
     {
-        private const string AddText = "добавить..";
+        public static string AddText = "добавить..";
 
         #region WindowStructureCreating
         public virtual Grid GetWindowContent(Window window, List<ItemInfo> itemInfo)
         {
             var mainGrid = new Grid() { Name = "MainGrid", Height = window.Height, Width = window.Width };  
-            mainGrid.RowDefinitions.Add(CreateRowDefinition(90, mainGrid));
-            mainGrid.RowDefinitions.Add(CreateRowDefinition(10, mainGrid));
+            mainGrid.RowDefinitions.Add(CreateRowDefinition(80, mainGrid));
+            mainGrid.RowDefinitions.Add(CreateRowDefinition(20, mainGrid));
 
             var workGrid = new Grid() { Name = "WorkGrid", Height = mainGrid.RowDefinitions[0].Height.Value, Width = mainGrid.Width };   
             workGrid.ColumnDefinitions.Add(CreateColumnDefinition(50, workGrid));
@@ -24,7 +22,7 @@ namespace Serialization.Services
             var editGrid = new Grid() { Name = "EditGrid", Width = workGrid.ColumnDefinitions[0].Width.Value, Height = workGrid.Height };
             editGrid.ColumnDefinitions.Add(CreateColumnDefinition(40, editGrid));
             editGrid.ColumnDefinitions.Add(CreateColumnDefinition(60, editGrid));
-            Initialize(editGrid, itemInfo);
+            Initialize(window, editGrid, itemInfo);
 
             var listBox = new ListBox() { Name = "ListBox", Width = workGrid.ColumnDefinitions[1].Width.Value, Height = workGrid.Height };
             
@@ -34,10 +32,15 @@ namespace Serialization.Services
             buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
             buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
 
-            var addButton = new Button { Name = "AddButton" };
-            var serializeButton = new Button { Name = "SerializeButton" };
-            var deserializeButton = new Button { Name = "DeserializeButton" };
-            var removeButton = new Button { Name = "RemoveButton" };
+            var addButton = new Button { Name = "AddButton", Content = "Добавить" };
+            var serializeButton = new Button { Name = "SerializeButton", Content = "Сериализовать" };
+            var deserializeButton = new Button { Name = "DeserializeButton", Content = "Десериализовать" };
+            var removeButton = new Button { Name = "RemoveButton", Content = "Удалить" };
+
+            addButton.Click += ((MainWindow) window).AddButtonClicked;
+            serializeButton.Click += ((MainWindow)window).SerializeButtonClicked;
+            deserializeButton.Click += ((MainWindow)window).DeserializeButtonClicked;
+            removeButton.Click += ((MainWindow)window).RemoveButtonClicked;
 
             buttonsGrid.Children.Add(addButton);
             buttonsGrid.Children.Add(serializeButton);
@@ -107,20 +110,27 @@ namespace Serialization.Services
 
         #region WindowInitialization
 
-        public void Initialize(Grid grid, List<ItemInfo> itemInfo)
+        public void Initialize(Window window, Grid grid, List<ItemInfo> itemInfo)
         {
 
             foreach (var field in itemInfo)
             {
+                int index = itemInfo.IndexOf(field);
+
                 var comboBox = CreateComboBox(field);
                 var label = CreateLabel(field);
 
                 InitializeComboBox(comboBox, field.Items);
+
+                if (index != 0)
+                    comboBox.SelectionChanged += ((MainWindow) window).ItemTypeSelectionChanged;
+                else
+                    comboBox.SelectionChanged += ((MainWindow) window).InstrumentTypeSelectionChanged;
                 
                 Grid.SetColumn(comboBox, 1);
                 Grid.SetColumn(label, 0);
-                Grid.SetRow(label, itemInfo.IndexOf(field));
-                Grid.SetRow(comboBox, itemInfo.IndexOf(field));
+                Grid.SetRow(label, index);
+                Grid.SetRow(comboBox, index);
 
                 grid.RowDefinitions.Add(CreateRowDefinition(30));
                 grid.Children.Add(label);
