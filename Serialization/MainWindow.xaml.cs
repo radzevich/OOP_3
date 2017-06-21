@@ -18,9 +18,9 @@ namespace Serialization
         public event ListChangedEventHandler ListChanged;
         public ListBox ObjectListBox;
 
-        private List<ItemInfo> _itemInfo = new List<ItemInfo>();
-        private MusicalInstrument _instrument;
+        private List<ItemInfo> _instrumentInfo = new List<ItemInfo>();
         private List<MusicalInstrument> _instruments = new List<MusicalInstrument>();
+        private int _index = -1;
 
         public MainWindow()
         {
@@ -42,16 +42,23 @@ namespace Serialization
             var instrumentViewer = new InstrumentViewer();
 
             if (name != null)
-                _itemInfo = instrumentViewer.GetInstrumentInfo(instrumentViewer.GetTypeThrowName(name));
-            else
-                _itemInfo = instrumentViewer.GetInstrumentInfo(instrumentViewer.GetFirstTypeName());
+            {
+                _instrumentInfo = instrumentViewer.GetInstrumentInfo(instrumentViewer.GetTypeThrowName(name));
 
-            _itemInfo[0].Value = name;
+                if (_index >= 0)
+                {
+                    new InstrumentFactory().Initialize(_instrumentInfo, _instruments[_index]);
+                }
+            }
+            else
+                _instrumentInfo = instrumentViewer.GetInstrumentInfo(instrumentViewer.GetFirstTypeName());
+
+            _instrumentInfo[0].Value = name;
 
             Content = new Grid();
-            ((Grid) Content).Children.Add(windowDecorator.GetWindowContent(this, _itemInfo));
+            ((Grid) Content).Children.Add(windowDecorator.GetWindowContent(this, _instrumentInfo));
 
-            ListChanged();
+            OnListChanged();
 
             //_windowDecorator.Initialize();
         }
@@ -63,7 +70,11 @@ namespace Serialization
         {
             var selectedItem = e.AddedItems[0];
 
-            if (selectedItem != WindowFactory.AddText)
+            //If type of instrument changed than we should create new object 
+            //and add it to list but not to change any one.
+            _index = -1;
+
+            if ((string)selectedItem != WindowFactory.AddText)
             {
                 Initialize(e.AddedItems[0] as string);
             }
@@ -78,11 +89,11 @@ namespace Serialization
         {
             var selectedItem = e.AddedItems[0];
 
-            if (selectedItem != WindowFactory.AddText)
+            if ((string)selectedItem != WindowFactory.AddText)
             {
                 var senderName = ((ComboBox) sender).Name;
 
-                foreach (ItemInfo field in _itemInfo)
+                foreach (ItemInfo field in _instrumentInfo)
                 {
                     if (field.Type == senderName)
                     {
@@ -127,6 +138,17 @@ namespace Serialization
             InitializeListBox();
         }
 
+        public void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = ((ListBox) sender).SelectedIndex;
+
+            if (index >= 0)
+            {
+                _index = index;
+                Initialize((string)e.AddedItems[0]);
+            }
+        }
+
         #endregion
 
 
@@ -134,25 +156,37 @@ namespace Serialization
 
         private void AddToList()
         {
-            var instrument = new InstrumentFactory().Create(_itemInfo);
+            var instrument = new InstrumentFactory().Create(_instrumentInfo);
 
-            _instruments.Add(instrument);
-            
+            if (_index > 0)
+            {
+                _instruments[_index] = instrument;
+            }
+            else
+            {
+                _instruments.Add(instrument);
+            }
+
             OnListChanged();
         }
 
         private void RemoveFromList()
         {
-            _instruments.Remove(_instrument);
+            if ((_index >= 0) & (_index < _instruments.Count))
+            {
+                _instruments?.RemoveAt(_index);
 
-            OnListChanged();
+                _index = -1;
+
+                OnListChanged();
+            }
         }
 
         private void Serialize()
         {
             var serializer = new Serializer();
 
-            serializer?.Serialize(_instruments, GetPathToSave());
+            serializer.Serialize(_instruments, GetPathToSave());
 
             OnListChanged();
         }

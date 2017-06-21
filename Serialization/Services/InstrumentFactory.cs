@@ -73,6 +73,22 @@ namespace Serialization.Services
             return instrument;
         }
 
+        public void Initialize(List<ItemInfo> itemInfo, MusicalInstrument instrument)
+        {
+            foreach (ItemInfo item in itemInfo)
+            {
+                if (item == itemInfo.First()) continue;
+                
+                PropertyInfo fieldInfo = instrument.GetType().GetProperty(item.Type);
+                string value = (fieldInfo.GetValue(instrument) as Description).Value;
+
+                if (value != null)
+                {
+                    item.Value = value;
+                }
+            }
+        }
+
         #endregion
 
         #region BasicInstrumentConstructors

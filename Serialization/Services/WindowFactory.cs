@@ -26,6 +26,7 @@ namespace Serialization.Services
 
             var listBox = new ListBox() { Name = "ObjectList", Width = workGrid.ColumnDefinitions[1].Width.Value, Height = workGrid.Height };
             ((MainWindow) window).ListChanged += ((MainWindow) window).ListBox_ListChanged;
+            listBox.SelectionChanged += ((MainWindow) window).ListBox_SelectionChanged;
             ((MainWindow) window).ObjectListBox = listBox;
 
             var buttonsGrid = new Grid() { Name = "ButtonsGrid", Height = mainGrid.RowDefinitions[1].Height.Value, Width = mainGrid.Width };
