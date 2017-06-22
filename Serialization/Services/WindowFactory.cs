@@ -7,12 +7,16 @@ namespace Serialization.Services
 {
     public class WindowFactory
     {
+        #region Constants
+
         private bool COL = true;
         private bool ROW = false;
         public static string AddText = "добавить..";
 
-        
+        #endregion
+
         #region WindowStructureCreating
+
         public virtual Grid GetWindowContent(Window window, List<ItemInfo> itemInfo)
         {
             var parent = (MainWindow) window;
@@ -85,51 +89,6 @@ namespace Serialization.Services
             return CreateColumnDefinition(parent.Width * percent / 100);
         }
 
-        protected virtual Grid CreateGrid(FrameworkElement parent, string name, bool colOrRow, List<int> parts)
-        {
-            var grid = new Grid { Name = name, Height = parent.Height, Width = parent.Width };
-
-            if (colOrRow)
-            {
-                foreach (int part in parts)
-                {
-                    grid.ColumnDefinitions.Add(CreateColumnDefinition(part, grid));
-                }
-            }
-            else
-            {
-                foreach (int part in parts)
-                {
-                    grid.RowDefinitions.Add(CreateRowDefinition(part, grid));
-                }
-            }
-
-            return grid;
-        }
-
-        protected virtual Grid CreateGrid(FrameworkElement parent, string name, bool colOrRow, List<int> parts,
-            int colPosition, int rowPosition)
-        {
-            var grid = CreateGrid(parent, name, colOrRow, parts);
-
-            Grid.SetColumn(grid, colPosition);
-            Grid.SetRow(grid, rowPosition);
-
-            return grid;
-        }
-
-        protected virtual Button CreateButton(string name, string content, RoutedEventHandler handler, int colPosition, int rowPosition)
-        {
-            var button = new Button {Name = name, Content = content};
-
-            button.Click += handler;
-
-            Grid.SetColumn(button, colPosition);
-            Grid.SetRow(button, rowPosition);
-
-            return button;
-        }
-
         protected virtual void AddChildren(Grid parent, List<FrameworkElement> childs)
         {
             foreach (FrameworkElement child in childs)
@@ -195,6 +154,51 @@ namespace Serialization.Services
             var label = new Label() { Content = item.Name };
 
             return label;
+        }
+
+        protected virtual Grid CreateGrid(FrameworkElement parent, string name, bool colOrRow, List<int> parts)
+        {
+            var grid = new Grid { Name = name, Height = parent.Height, Width = parent.Width };
+
+            if (colOrRow)
+            {
+                foreach (int part in parts)
+                {
+                    grid.ColumnDefinitions.Add(CreateColumnDefinition(part, grid));
+                }
+            }
+            else
+            {
+                foreach (int part in parts)
+                {
+                    grid.RowDefinitions.Add(CreateRowDefinition(part, grid));
+                }
+            }
+
+            return grid;
+        }
+
+        protected virtual Grid CreateGrid(FrameworkElement parent, string name, bool colOrRow, List<int> parts,
+            int colPosition, int rowPosition)
+        {
+            var grid = CreateGrid(parent, name, colOrRow, parts);
+
+            Grid.SetColumn(grid, colPosition);
+            Grid.SetRow(grid, rowPosition);
+
+            return grid;
+        }
+
+        protected virtual Button CreateButton(string name, string content, RoutedEventHandler handler, int colPosition, int rowPosition)
+        {
+            var button = new Button { Name = name, Content = content };
+
+            button.Click += handler;
+
+            Grid.SetColumn(button, colPosition);
+            Grid.SetRow(button, rowPosition);
+
+            return button;
         }
 
         private void InitializeComboBox(ComboBox comboBox, IEnumerable<string> items)

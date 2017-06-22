@@ -116,7 +116,9 @@ namespace Serialization
             }
             else
             {
-                throw new NotImplementedException();
+                var addWindow = new AddItemWindow(new List<string> { _instrumentInfo[0].Type, ((FrameworkElement)sender).Name });
+
+                addWindow.Show();
             }
         }
 

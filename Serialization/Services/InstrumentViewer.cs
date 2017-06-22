@@ -45,6 +45,13 @@ namespace Serialization.Services
             return type.First();
         }
 
+        public virtual string GetNameThroughPath(List<string> path)
+        {
+            XmlNode xNode = GetNodeThroughPath(path);
+
+            return xNode.Attributes.GetNamedItem("name").Value;
+        }
+
         //Returns info about class strucure, names of it's properties.
         public virtual List<ItemInfo> GetInstrumentInfo(string instrumentType)
         {
@@ -72,6 +79,33 @@ namespace Serialization.Services
                 Value = null,
                 Items = (from XmlElement node in xNode.ChildNodes select node.Attributes.GetNamedItem("value").Value).ToList()
             };
+        }
+
+        public virtual void AddItem(List<string> path, string value)
+        {
+            XmlNode xNode = GetNodeThroughPath(path);
+
+            var item = _xDocument.CreateElement("item");
+            var itemAttribute = _xDocument.CreateAttribute("value");
+            var attributeText = _xDocument.CreateTextNode(value);
+
+            itemAttribute.AppendChild(attributeText);
+            item.Attributes.Append(itemAttribute);
+            xNode.AppendChild(item);
+
+            _xDocument.Save(FilePath);
+        }
+
+        private XmlNode GetNodeThroughPath(List<string> path)
+        {
+            XmlNode xNode = _xRoot;
+
+            foreach (var node in path)
+            {
+                xNode = xNode.SelectSingleNode(node);
+            }
+
+            return xNode;
         }
 
         #endregion

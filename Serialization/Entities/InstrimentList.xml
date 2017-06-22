@@ -1,42 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <MusicalInstrument name="Инструмент">
   <Electric value="Электрогитара">
     <Country name="Страна">
-      <item value ="США"/>
-      <item value ="Япония"/>
+      <item value="США" />
+      <item value="Япония" />
+      <item value="Индонезия" />
     </Country>
     <Company name="Производитель">
-      <item value ="Gibson"/>
-      <item value ="Fender"/>
+      <item value="Gibson" />
+      <item value="Fender" />
+      <item value="Ibanez" />
     </Company>
     <Model name="Модель">
-      <item value ="Les Paul"/>
-      <item value ="Stratocaster"/>
+      <item value="Les Paul" />
+      <item value="Stratocaster" />
     </Model>
     <Pickups name="Звукосниматели">
-      <item value ="Пассивные"/>
-      <item value ="Активные"/>
+      <item value="Пассивные" />
+      <item value="Активные" />
     </Pickups>
   </Electric>
-
   <Acoustic value="Акустическая гитара">
-    <Country name="Страна"></Country>
-    <Company name="Производитель"></Company>
-    <Model name="Модель"></Model>
-    <BackMaterial name="Задняя дека"></BackMaterial>
+    <Country name="Страна">
+    </Country>
+    <Company name="Производитель">
+    </Company>
+    <Model name="Модель">
+    </Model>
+    <BackMaterial name="Задняя дека">
+    </BackMaterial>
   </Acoustic>
-
   <Bass value="Бас-гитара">
-    <Country name="Страна"></Country>
-    <Company name="Производитель"></Company>
-    <Model name="Модель"></Model>
-    <StringNumber name="Количество струн"></StringNumber>
+    <Country name="Страна">
+    </Country>
+    <Company name="Производитель">
+    </Company>
+    <Model name="Модель">
+    </Model>
+    <StringNumber name="Количество струн">
+    </StringNumber>
   </Bass>
-
   <Synthesizer value="Синтезатор">
-    <Country name="Страна"></Country>
-    <Company name="Производитель"></Company>
-    <Model name="Модель"></Model>
-    <KeyNumber name="Количество клавиш"></KeyNumber>
+    <Country name="Страна">
+    </Country>
+    <Company name="Производитель">
+    </Company>
+    <Model name="Модель">
+    </Model>
+    <KeyNumber name="Количество клавиш">
+    </KeyNumber>
   </Synthesizer>
 </MusicalInstrument>
