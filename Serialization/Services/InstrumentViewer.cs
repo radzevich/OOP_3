@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Markup;
 using System.Windows.Navigation;
 using System.Xml;
 using System.Xml.Linq;
@@ -85,15 +86,33 @@ namespace Serialization.Services
         {
             XmlNode xNode = GetNodeThroughPath(path);
 
-            var item = _xDocument.CreateElement("item");
-            var itemAttribute = _xDocument.CreateAttribute("value");
+            xNode.AppendChild(CreateElement("item", "value", value));
+
+            _xDocument.Save(FilePath);
+        }
+
+        public virtual void AddInstrument(Dictionary<string, string> config)
+        {
+            var xNode = CreateElement(config.Keys.First(), "value", config.Values.First());
+
+            for (int i = 1; i < config.Count; i++)
+            {
+                xNode.AppendChild(CreateElement(config.Keys.ElementAt(i), "name", config.Values.ElementAt(i)));
+            }
+
+            _xRoot.AppendChild(xNode);
+        }
+
+        private XmlElement CreateElement(string name, string attributeName, string value)
+        {
+            var item = _xDocument.CreateElement(name);
+            var itemAttribute = _xDocument.CreateAttribute(attributeName);
             var attributeText = _xDocument.CreateTextNode(value);
 
             itemAttribute.AppendChild(attributeText);
             item.Attributes.Append(itemAttribute);
-            xNode.AppendChild(item);
 
-            _xDocument.Save(FilePath);
+            return item;
         }
 
         private XmlNode GetNodeThroughPath(List<string> path)

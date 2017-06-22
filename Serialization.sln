@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicalInstruments", "Serialization\MusicalInstruments.csproj", "{CF0FBBE6-0A4B-4976-B4DA-5D84B8061A26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drums", "Drums\Drums.csproj", "{4586EBDF-3285-4D9C-9F54-B46436A23A01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginInterface", "PluginInterface\PluginInterface.csproj", "{1CA86C0D-A5D4-432A-ACEE-8FF033D613AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{CF0FBBE6-0A4B-4976-B4DA-5D84B8061A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF0FBBE6-0A4B-4976-B4DA-5D84B8061A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF0FBBE6-0A4B-4976-B4DA-5D84B8061A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4586EBDF-3285-4D9C-9F54-B46436A23A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4586EBDF-3285-4D9C-9F54-B46436A23A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4586EBDF-3285-4D9C-9F54-B46436A23A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4586EBDF-3285-4D9C-9F54-B46436A23A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA86C0D-A5D4-432A-ACEE-8FF033D613AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA86C0D-A5D4-432A-ACEE-8FF033D613AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA86C0D-A5D4-432A-ACEE-8FF033D613AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA86C0D-A5D4-432A-ACEE-8FF033D613AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -92,7 +92,8 @@ namespace Serialization
             }
             else
             {
-                throw new NotImplementedException();
+                var pluginManager = new PluginManager(GetPathToLoad());
+                pluginManager.AddToHierarchy();
             }
         }
 
