@@ -1,65 +1,47 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Forms.VisualStyles;
 
 namespace Serialization.Services
 {
     public class WindowFactory
     {
+        private bool COL = true;
+        private bool ROW = false;
         public static string AddText = "добавить..";
 
+        
         #region WindowStructureCreating
         public virtual Grid GetWindowContent(Window window, List<ItemInfo> itemInfo)
         {
-            var mainGrid = new Grid() { Name = "MainGrid", Height = window.Height, Width = window.Width };  
-            mainGrid.RowDefinitions.Add(CreateRowDefinition(80, mainGrid));
-            mainGrid.RowDefinitions.Add(CreateRowDefinition(20, mainGrid));
+            var parent = (MainWindow) window;
 
-            var workGrid = new Grid() { Name = "WorkGrid", Height = mainGrid.RowDefinitions[0].Height.Value, Width = mainGrid.Width };   
-            workGrid.ColumnDefinitions.Add(CreateColumnDefinition(50, workGrid));
-            workGrid.ColumnDefinitions.Add(CreateColumnDefinition(50, workGrid));
+            //Creating of window carcass.
+            var mainGrid = CreateGrid(parent, "MainGrid", ROW, new List<int> {80, 20});
+            var workGrid = CreateGrid(mainGrid, "WorkGrid", COL, new List<int> { 50, 50 });
+            var editGrid = CreateGrid(workGrid, "EditGrid", COL, new List<int> { 20, 30 });
+            var buttonsGrid = CreateGrid(mainGrid, "ButtonsGrid", COL, new List<int> { 15, 15, 15, 15 }, 1, 1);
 
-            var editGrid = new Grid() { Name = "EditGrid", Width = workGrid.ColumnDefinitions[0].Width.Value, Height = workGrid.Height };
-            editGrid.ColumnDefinitions.Add(CreateColumnDefinition(40, editGrid));
-            editGrid.ColumnDefinitions.Add(CreateColumnDefinition(60, editGrid));
+            //Initialization of comboBoxes.
             Initialize(window, editGrid, itemInfo);
 
+            //Creating of listBox for created items displaing.
             var listBox = new ListBox() { Name = "ObjectList", Width = workGrid.ColumnDefinitions[1].Width.Value, Height = workGrid.Height };
-            ((MainWindow) window).ListChanged += ((MainWindow) window).ListBox_ListChanged;
-            listBox.SelectionChanged += ((MainWindow) window).ListBox_SelectionChanged;
-            ((MainWindow) window).ObjectListBox = listBox;
-
-            var buttonsGrid = new Grid() { Name = "ButtonsGrid", Height = mainGrid.RowDefinitions[1].Height.Value, Width = mainGrid.Width };
-            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
-            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
-            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
-            buttonsGrid.ColumnDefinitions.Add(CreateColumnDefinition(15, workGrid));
-
-            var addButton = new Button { Name = "AddButton", Content = "Добавить" };
-            var serializeButton = new Button { Name = "SerializeButton", Content = "Сериализовать" };
-            var deserializeButton = new Button { Name = "DeserializeButton", Content = "Десериализовать" };
-            var removeButton = new Button { Name = "RemoveButton", Content = "Удалить" };
-
-            addButton.Click += ((MainWindow) window).AddButtonClicked;
-            serializeButton.Click += ((MainWindow)window).SerializeButtonClicked;
-            deserializeButton.Click += ((MainWindow)window).DeserializeButtonClicked;
-            removeButton.Click += ((MainWindow)window).RemoveButtonClicked;
-
-            buttonsGrid.Children.Add(addButton);
-            buttonsGrid.Children.Add(serializeButton);
-            buttonsGrid.Children.Add(deserializeButton);
-            buttonsGrid.Children.Add(removeButton);
-
+            parent.ListChanged += parent.ListBox_ListChanged;
+            listBox.SelectionChanged += parent.ListBox_SelectionChanged;
+            parent.ObjectListBox = listBox;
             Grid.SetColumn(listBox, 1);
-            Grid.SetColumn(serializeButton, 1);
-            Grid.SetColumn(deserializeButton, 2);
-            Grid.SetColumn(removeButton, 3);
-            Grid.SetRow(buttonsGrid, 1);
 
-            mainGrid.Children.Add(buttonsGrid);
-            workGrid.Children.Add(listBox);
-            workGrid.Children.Add(editGrid);
-            mainGrid.Children.Add(workGrid);
+            //Buttons creating.
+            var addButton = CreateButton("AddButton", "Сохранить", parent.AddButtonClicked, 0, 0);
+            var serializeButton = CreateButton("SerializeButton", "Сериализовать", parent.SerializeButtonClicked, 1, 0);
+            var deserializeButton = CreateButton("DeserializeButton", "Десериализовать", parent.DeserializeButtonClicked, 2, 0);
+            var removeButton = CreateButton("RemoveButton", "Удалить", parent.RemoveButtonClicked, 3, 0);
+
+            AddChildren(buttonsGrid, new List<FrameworkElement> { addButton, serializeButton, deserializeButton, removeButton });
+            AddChildren(mainGrid, new List<FrameworkElement> { workGrid, buttonsGrid });
+            AddChildren(workGrid, new List<FrameworkElement> { listBox, editGrid });
             
             return mainGrid;
         }
@@ -103,6 +85,58 @@ namespace Serialization.Services
             return CreateColumnDefinition(parent.Width * percent / 100);
         }
 
+        protected virtual Grid CreateGrid(FrameworkElement parent, string name, bool colOrRow, List<int> parts)
+        {
+            var grid = new Grid { Name = name, Height = parent.Height, Width = parent.Width };
+
+            if (colOrRow)
+            {
+                foreach (int part in parts)
+                {
+                    grid.ColumnDefinitions.Add(CreateColumnDefinition(part, grid));
+                }
+            }
+            else
+            {
+                foreach (int part in parts)
+                {
+                    grid.RowDefinitions.Add(CreateRowDefinition(part, grid));
+                }
+            }
+
+            return grid;
+        }
+
+        protected virtual Grid CreateGrid(FrameworkElement parent, string name, bool colOrRow, List<int> parts,
+            int colPosition, int rowPosition)
+        {
+            var grid = CreateGrid(parent, name, colOrRow, parts);
+
+            Grid.SetColumn(grid, colPosition);
+            Grid.SetRow(grid, rowPosition);
+
+            return grid;
+        }
+
+        protected virtual Button CreateButton(string name, string content, RoutedEventHandler handler, int colPosition, int rowPosition)
+        {
+            var button = new Button {Name = name, Content = content};
+
+            button.Click += handler;
+
+            Grid.SetColumn(button, colPosition);
+            Grid.SetRow(button, rowPosition);
+
+            return button;
+        }
+
+        protected virtual void AddChildren(Grid parent, List<FrameworkElement> childs)
+        {
+            foreach (FrameworkElement child in childs)
+            {
+                parent.Children.Add(child);
+            }
+        }
 
         public virtual void SetWindowStyle(Window window)
         {

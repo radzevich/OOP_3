@@ -83,7 +83,6 @@
     <Compile Include="Structure\Instruments\Electric.cs" />
     <Compile Include="Structure\Instruments\Guitar.cs" />
     <Compile Include="Structure\Description.cs" />
-    <Compile Include="Structure\IDescription.cs" />
     <Compile Include="Structure\Instruments\MusicalInstrument.cs" />
     <Compile Include="Structure\Instruments\Synthesizer.cs" />
     <Page Include="MainWindow.xaml">

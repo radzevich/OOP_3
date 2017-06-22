@@ -2,6 +2,7 @@
 
 namespace Serialization.Services
 {
+    //Class using for data excanging between services.
     public class ItemInfo
     {
         public string Type { get; set; }

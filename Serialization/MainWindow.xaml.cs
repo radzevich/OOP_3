@@ -14,13 +14,15 @@ namespace Serialization
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const int INVALID_INDEX = -1;
+
         public delegate void ListChangedEventHandler();
         public event ListChangedEventHandler ListChanged;
         public ListBox ObjectListBox;
 
         private List<ItemInfo> _instrumentInfo = new List<ItemInfo>();
         private List<MusicalInstrument> _instruments = new List<MusicalInstrument>();
-        private int _index = -1;
+        private int _index = INVALID_INDEX;
 
         public MainWindow()
         {
@@ -36,25 +38,35 @@ namespace Serialization
             }
         }
 
+        //Window structure initializtion.
         private void Initialize(string name)
         {
             var windowDecorator = new WindowFactory();
             var instrumentViewer = new InstrumentViewer();
 
-            if (name != null)
+            //Getting instrument class information through it's name.
+            //If window haven't been initialized than we use the type of the first instrument in list 
+            //because user haven't selected instrument type yet.
+            if (name == null)
+            {
+                _instrumentInfo = instrumentViewer.GetInstrumentInfo(instrumentViewer.GetFirstTypeName());
+            }
+            //Else we get instrument class info from InstrumentViewer
+            else
             {
                 _instrumentInfo = instrumentViewer.GetInstrumentInfo(instrumentViewer.GetTypeThrowName(name));
 
+                //Non-negative value means that instrument is already created and some properties 
+                //of object might be initialized, that's why we should display it.
                 if (_index >= 0)
                 {
                     new InstrumentFactory().Initialize(_instrumentInfo, _instruments[_index]);
                 }
             }
-            else
-                _instrumentInfo = instrumentViewer.GetInstrumentInfo(instrumentViewer.GetFirstTypeName());
 
             _instrumentInfo[0].Value = name;
 
+            //Window structure creating.
             Content = new Grid();
             ((Grid) Content).Children.Add(windowDecorator.GetWindowContent(this, _instrumentInfo));
 
@@ -72,7 +84,7 @@ namespace Serialization
 
             //If type of instrument changed than we should create new object 
             //and add it to list but not to change any one.
-            _index = -1;
+            _index = INVALID_INDEX;
 
             if ((string)selectedItem != WindowFactory.AddText)
             {
@@ -176,7 +188,7 @@ namespace Serialization
             {
                 _instruments?.RemoveAt(_index);
 
-                _index = -1;
+                _index = INVALID_INDEX;
 
                 OnListChanged();
             }

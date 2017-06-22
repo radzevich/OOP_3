@@ -11,7 +11,7 @@ namespace Serialization.Services
     public class InstrumentFactory
     {
         #region Fields
-
+        //Dictionary of constructors <class name, constructor info (reflection)>
         private readonly Dictionary<string, ConstructorInfo> _instrumentDictionary;
 
         #endregion
@@ -62,6 +62,7 @@ namespace Serialization.Services
             return instrument;
         }
 
+        //Creating new instrument using it's description.
         public MusicalInstrument Create(List<ItemInfo> itemInfo)
         {
             var instrument = Create(itemInfo[0].Type);
@@ -73,6 +74,7 @@ namespace Serialization.Services
             return instrument;
         }
 
+        //Initializing instrument description from already created instrument object.
         public void Initialize(List<ItemInfo> itemInfo, MusicalInstrument instrument)
         {
             foreach (ItemInfo item in itemInfo)

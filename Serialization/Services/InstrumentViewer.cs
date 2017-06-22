@@ -29,11 +29,13 @@ namespace Serialization.Services
             return (from XmlElement node in nodeList select node.Attributes.GetNamedItem("value").Value).ToList();
         }
 
+        //Returns the name of the first class in document.
         public virtual string GetFirstTypeName()
         {
             return _xRoot.SelectSingleNode("*").Name;
         }
 
+        //Returns class name through it's "name" attribute.
         public virtual string GetTypeThrowName(string name)
         {
             var type = from XmlElement node in _xRoot.ChildNodes
@@ -43,18 +45,7 @@ namespace Serialization.Services
             return type.First();
         }
 
-        protected virtual ItemInfo GetItemInfo(XmlNode xNode)
-        {
-            return new ItemInfo
-            {
-                Name = xNode.Attributes.GetNamedItem("name").Value,
-                Type = xNode.Name,
-                Value = null,
-                Items = (from XmlElement node in xNode.ChildNodes select node.Attributes.GetNamedItem("value").Value).ToList()
-            };
-        }
-
-
+        //Returns info about class strucure, names of it's properties.
         public virtual List<ItemInfo> GetInstrumentInfo(string instrumentType)
         {
             var instrumentInfo = new List<ItemInfo> { GetItemInfo(_xRoot) };
@@ -70,6 +61,17 @@ namespace Serialization.Services
             instrumentInfo.AddRange(list);
 
             return instrumentInfo;
+        }
+
+        protected virtual ItemInfo GetItemInfo(XmlNode xNode)
+        {
+            return new ItemInfo
+            {
+                Name = xNode.Attributes.GetNamedItem("name").Value,
+                Type = xNode.Name,
+                Value = null,
+                Items = (from XmlElement node in xNode.ChildNodes select node.Attributes.GetNamedItem("value").Value).ToList()
+            };
         }
 
         #endregion

@@ -5,8 +5,6 @@ namespace Serialization.Services
 {
     class FileReader
     {
-        public FileReader() { }
-        
         public string[] Read(string filePath)
         {
             if (!File.Exists(filePath))
