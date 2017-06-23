@@ -50,4 +50,9 @@
     <KeyNumber name="Количество клавиш">
     </KeyNumber>
   </Synthesizer>
+  <Drums value="Ударные">
+    <Company name="производитель" />
+    <Country name="страна" />
+    <Configuration name="конфигурация" />
+  </Drums>
 </MusicalInstrument>

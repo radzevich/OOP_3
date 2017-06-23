@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Serialization.Structure
 {
-    [Serializable]
+    //[Serializable]
     public class Description
     {
         public string Value { get; set; }

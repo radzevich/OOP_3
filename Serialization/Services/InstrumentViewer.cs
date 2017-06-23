@@ -101,6 +101,7 @@ namespace Serialization.Services
             }
 
             _xRoot.AppendChild(xNode);
+            _xDocument.Save(FilePath);
         }
 
         private XmlElement CreateElement(string name, string attributeName, string value)

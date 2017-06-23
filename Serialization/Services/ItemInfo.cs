@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Serialization.Services
 {
     //Class using for data excanging between services.
+    [Serializable]
     public class ItemInfo
     {
         public string Type { get; set; }

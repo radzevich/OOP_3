@@ -21,9 +21,9 @@ namespace Serialization.Services
 
         public void AddToHierarchy()
         {
-            var type = _asm.GetType();
-
-            if (type is IHierarchyPlugin)
+            var type = _asm.GetTypes().First();
+            
+            if (type.GetInterfaces().Contains(typeof(IHierarchyPlugin)))
             {
                 var plugin = Activator.CreateInstance(type) as IHierarchyPlugin;
 

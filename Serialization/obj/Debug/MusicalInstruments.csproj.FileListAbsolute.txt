@@ -14,3 +14,5 @@ E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Se
 E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\Serialization.pdb
 E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\AddItemWindow.g.cs
 E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\obj\Debug\AddItemWindow.baml
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\bin\Debug\PluginInterface.dll
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Serialization\bin\Debug\PluginInterface.pdb

@@ -6,7 +6,7 @@ using System.Xml;
 using PluginInterface;
 
 namespace Drums
-{
+{   
     public class Drums : IHierarchyPlugin
     {
         public string Name => "Drums";
@@ -18,10 +18,10 @@ namespace Drums
             {
                 var content = new Dictionary<string, string>
                 {
-                    {Name, "ударные"},
-                    {"Company", "производитель"},
-                    {"Country", "страна"},
-                    {"Configuration", "конфигурация"}
+                    {Name, "Ударные"},
+                    {"Company", "Производитель"},
+                    {"Country", "Страна"},
+                    {"Configuration", "Конфигурация"}
                 };
                 
                 return content;

@@ -1,0 +1,5 @@
+E:\Универ\2 course\ООП\3rd_lab\Serialization\PluginInterface\bin\Debug\PluginInterface.dll
+E:\Универ\2 course\ООП\3rd_lab\Serialization\PluginInterface\bin\Debug\PluginInterface.pdb
+E:\Универ\2 course\ООП\3rd_lab\Serialization\PluginInterface\obj\Debug\PluginInterface.csprojResolveAssemblyReference.cache
+E:\Универ\2 course\ООП\3rd_lab\Serialization\PluginInterface\obj\Debug\PluginInterface.dll
+E:\Универ\2 course\ООП\3rd_lab\Serialization\PluginInterface\obj\Debug\PluginInterface.pdb

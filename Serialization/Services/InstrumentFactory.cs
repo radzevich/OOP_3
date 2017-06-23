@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using Serialization.Configs;
 using Serialization.Structure;
 using Serialization.Structure.Instruments;
@@ -124,6 +125,16 @@ namespace Serialization.Services
         {
             _instrumentDictionary.Add(type.Name, type.GetConstructor(Type.EmptyTypes));
         }
+
+        public void AddExtendedClass(List<string> info)
+        {
+            var builder = new ClassBuilder();
+
+            builder.Create(info);
+            
+        }
+
+
 
         #endregion
 
