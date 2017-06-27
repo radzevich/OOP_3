@@ -4,7 +4,9 @@ using System.Windows.Controls;
 using Serialization.Services;
 using Microsoft.Win32;
 using System;
+using System.CodeDom;
 using System.ComponentModel;
+using System.Linq;
 using Serialization.Structure.Instruments;
 
 namespace Serialization
@@ -92,33 +94,36 @@ namespace Serialization
             }
             else
             {
-                var pluginManager = new PluginManager(GetPathToLoad());
-                pluginManager.AddToHierarchy();
+                var path = GetPathToLoad();
+                if (path.Length > 0)
+                {
+                    AddNewClass(path);
+                }
             }
+        }
+
+        private void AddNewClass(string path)
+        {
+            var pluginManager = new PluginManager(path);
+            var instrumentViewer = new InstrumentViewer();
+            instrumentViewer.AddInstrument(pluginManager.GetNewClass());
+            Initialize(null);    
         }
 
         //Fill object properie on selection changing.
         public void ItemTypeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = e.AddedItems[0];
+            var selectedItem = e.AddedItems[0] as string;
 
-            if ((string)selectedItem != WindowFactory.AddText)
+            if (selectedItem != WindowFactory.AddText)
             {
-                var senderName = ((ComboBox) sender).Name;
-
-                foreach (ItemInfo field in _instrumentInfo)
-                {
-                    if (field.Type == senderName)
-                    {
-                        field.Value = selectedItem as string;
-                        break;
-                    }
-                }
+                var item = _instrumentInfo.First(obj => obj.Type == ((ComboBox)sender).Name);
+                item.Value = selectedItem;
             }
             else
             {
-                var addWindow = new AddItemWindow(new List<string> { _instrumentInfo[0].Type, ((FrameworkElement)sender).Name });
-
+                var path = new List<string> { _instrumentInfo[0].Type, ((ComboBox) sender).Name};
+                var addWindow = new AddItemWindow((ComboBox) sender, path);
                 addWindow.Show();
             }
         }
@@ -210,7 +215,7 @@ namespace Serialization
         {
             var serializer = new Serializer();
 
-            _instruments = (List<MusicalInstrument>)serializer?.Deserialize(GetPathToLoad());
+            _instruments = serializer?.Deserialize(GetPathToLoad());
 
             OnListChanged();
         }

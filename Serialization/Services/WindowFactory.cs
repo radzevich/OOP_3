@@ -211,6 +211,19 @@ namespace Serialization.Services
             comboBox.Items.Add(AddText);
         }
 
+        public void ReinitializeComboBox(ComboBox comboBox, List<string> path)
+        {
+            var instrumentViewer = new InstrumentViewer();
+            var items = instrumentViewer.GetItems(path);
+
+            InitializeComboBox(comboBox, items);
+
+            for (int i = 0; i < comboBox.Items.Count - items.Count; i++)
+            {
+                comboBox.Items.RemoveAt(i);
+            }
+        }
+
         #endregion
     }
 }

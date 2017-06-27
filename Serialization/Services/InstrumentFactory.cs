@@ -32,6 +32,19 @@ namespace Serialization.Services
             AddToDictionary(typeof(Bass));
             AddToDictionary(typeof(Acoustic));
             AddToDictionary(typeof(Synthesizer));
+
+            InitializePlugins();
+        }
+
+        private void InitializePlugins()
+        {
+            var pluginConfig = new PluginConfig();
+            var plugins = pluginConfig.GetPlugins();
+
+            foreach (string plugin in plugins)
+            {
+                AddToDictionary(CreateExtendedClass(plugin));
+            }
         }
 
         #endregion
@@ -120,21 +133,32 @@ namespace Serialization.Services
 
         #region ExtensionInterface
 
-        //Allows to add new classes
+        //Allows to add constructors of new classes to dictionary.
         public void AddToDictionary(Type type)
         {
             _instrumentDictionary.Add(type.Name, type.GetConstructor(Type.EmptyTypes));
         }
 
-        public void AddExtendedClass(List<string> info)
+        public void AddExtendedClass(string name, string path)
         {
-            var builder = new ClassBuilder();
+            var config = new PluginConfig();
 
-            builder.Create(info);
-            
+            config.Add(name, path);
         }
 
+        private Type CreateExtendedClass(string name)
+        {
+            var fullInfo = new InstrumentViewer().GetInstrumentInfo(name);
+            var info = new List<string>(); 
+            var builder = new ClassBuilder();
 
+            foreach (ItemInfo itemInfo in fullInfo)
+            {
+                info.Add(itemInfo.Type);
+            }
+
+            return builder.Create(info);
+        }
 
         #endregion
 

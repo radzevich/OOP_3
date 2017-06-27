@@ -10,6 +10,7 @@
       <item value="Gibson" />
       <item value="Fender" />
       <item value="Ibanez" />
+      <item value="Fender" />
     </Company>
     <Model name="Модель">
       <item value="Les Paul" />
@@ -22,6 +23,13 @@
   </Electric>
   <Acoustic value="Акустическая гитара">
     <Country name="Страна">
+      <item value="Германия" />
+      <item value="Индонезия" />
+      <item value="Китай" />
+      <item value="Мексика" />
+      <item value="Россия" />
+      <item value="США" />
+      <item value="Япония" />
     </Country>
     <Company name="Производитель">
     </Company>
@@ -32,6 +40,13 @@
   </Acoustic>
   <Bass value="Бас-гитара">
     <Country name="Страна">
+      <item value="Германия" />
+      <item value="Индонезия" />
+      <item value="Китай" />
+      <item value="Мексика" />
+      <item value="Россия" />
+      <item value="США" />
+      <item value="Япония" />
     </Country>
     <Company name="Производитель">
     </Company>
@@ -42,6 +57,13 @@
   </Bass>
   <Synthesizer value="Синтезатор">
     <Country name="Страна">
+      <item value="Германия" />
+      <item value="Индонезия" />
+      <item value="Китай" />
+      <item value="Мексика" />
+      <item value="Россия" />
+      <item value="США" />
+      <item value="Япония" />
     </Country>
     <Company name="Производитель">
     </Company>
@@ -50,8 +72,16 @@
     <KeyNumber name="Количество клавиш">
     </KeyNumber>
   </Synthesizer>
-  <Drums value="Ударные">
-    <Company name="производитель" />
+  <Drums value="ударные">
+    <Company name="производитель">
+      <item value="Германия" />
+      <item value="Индонезия" />
+      <item value="Китай" />
+      <item value="Мексика" />
+      <item value="Россия" />
+      <item value="США" />
+      <item value="Япония" />
+    </Company>
     <Country name="страна" />
     <Configuration name="конфигурация" />
   </Drums>

@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entities/instrimentlist.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("configs/plugins.xml")]
 
 

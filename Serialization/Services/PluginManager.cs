@@ -2,44 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using PluginInterface;
+using Serialization.Configs;
 
 namespace Serialization.Services
 {
     class PluginManager
     {
-        private readonly Assembly _asm;
+        private readonly Type _type;
+        private readonly string _path;
 
-        public void AddContentPlugin(string path)
+        public Dictionary<string, string> GetNewClass()
         {
-            Assembly asm = Assembly.LoadFrom(path);
-
-        }
-
-        public void AddToHierarchy()
-        {
-            var type = _asm.GetTypes().First();
-            
-            if (type.GetInterfaces().Contains(typeof(IHierarchyPlugin)))
+            if (_type.GetInterfaces().Contains(typeof(IHierarchyPlugin)))
             {
-                var plugin = Activator.CreateInstance(type) as IHierarchyPlugin;
+                var plugin = Activator.CreateInstance(_type) as IHierarchyPlugin;
 
                 if (IsValid(plugin.PublicKey))
                 {
-                    AddInstrument(plugin.Content);
+                    AddToConfig();
+                    return plugin.Content;
                 }
             }
+            return null;
         }
 
-        private void AddInstrument(Dictionary<string, string> configuration)
+        public List<string> GetNewContent()
         {
-            var instrumentViewer = new InstrumentViewer();
-            var instrumentFactory = new InstrumentFactory();
+            if (_type.GetInterfaces().Contains(typeof(IContentPlugin)))
+            {
+                var plugin = Activator.CreateInstance(_type) as IContentPlugin;
 
-            instrumentViewer.AddInstrument(configuration);
+                if (IsValid(plugin.PublicKey))
+                {
+                    AddToConfig();
+                    return plugin.Content;
+                }
+            }
+            return null; 
+        }
+
+        private void AddToConfig()
+        {
+            var pluginConfig = new PluginConfig();
+
+            pluginConfig.Add(_type.Name, _path);
         }
 
         private bool IsValid(string path)
@@ -49,7 +61,8 @@ namespace Serialization.Services
 
         public PluginManager(string pluginPath)
         {
-            _asm = Assembly.LoadFrom(pluginPath);
+            _type = Assembly.LoadFrom(pluginPath).GetTypes().First(); ;
+            _path = pluginPath;
         }
     }
 }

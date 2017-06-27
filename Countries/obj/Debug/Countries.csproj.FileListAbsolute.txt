@@ -1,0 +1,7 @@
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.pdb
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\PluginInterface.dll
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\PluginInterface.pdb
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\obj\Debug\Countries.csprojResolveAssemblyReference.cache
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\obj\Debug\Countries.dll
+E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\obj\Debug\Countries.pdb

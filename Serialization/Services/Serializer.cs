@@ -54,17 +54,12 @@ namespace Serialization.Services
             return deserialized;
         }
 
-        public Serializer()
-        {
-            _formatter = new BinaryFormatter();
-        }
-
         public List<ItemInfo> ToSerializable(MusicalInstrument instrument)
         {
             var itemList = new List<ItemInfo>();
             Type type = instrument.GetType();
 
-            itemList.Add (new ItemInfo
+            itemList.Add(new ItemInfo
             {
                 Type = type.Name,
                 Value = instrument.Value
@@ -72,11 +67,15 @@ namespace Serialization.Services
 
             foreach (PropertyInfo property in type.GetProperties())
             {
-                itemList.Add (new ItemInfo
+                if (property.Name != "Value")
                 {
-                    Type = property.Name,
-                    Value = ((Description)property.GetValue(instrument, null)).Value
-                });
+
+                    itemList.Add(new ItemInfo
+                    {
+                        Type = property.Name,
+                        Value = ((Description) property.GetValue(instrument, null))?.Value
+                    });
+                }
             }
 
             return itemList;
@@ -85,6 +84,11 @@ namespace Serialization.Services
         public MusicalInstrument FromSerializable(List<ItemInfo> itemList)
         {
             return new InstrumentFactory().Create(itemList);
+        }
+
+        public Serializer()
+        {
+            _formatter = new BinaryFormatter();
         }
     }
 }

@@ -74,6 +74,7 @@
     <Compile Include="AddItemWindow.xaml.cs">
       <DependentUpon>AddItemWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Configs\PluginConfig.cs" />
     <Compile Include="Services\ClassBuilder.cs" />
     <Compile Include="Services\InstrumentViewer.cs" />
     <Compile Include="Configs\WindowConfig.cs" />
@@ -156,7 +157,9 @@
   <ItemGroup>
     <Resource Include="Entities\InstrimentList.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Configs\pluginConfig.xml" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">
       <Project>{1ca86c0d-a5d4-432a-acee-8ff033d613af}</Project>
