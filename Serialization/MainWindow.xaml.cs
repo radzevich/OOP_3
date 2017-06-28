@@ -8,6 +8,7 @@ using System.CodeDom;
 using System.ComponentModel;
 using System.Linq;
 using Serialization.Structure.Instruments;
+using System.IO;
 
 namespace Serialization
 {
@@ -18,12 +19,15 @@ namespace Serialization
     {
         private const int INVALID_INDEX = -1;
 
+        private delegate byte[] DataFormattingHandler(byte[] stream);
         public delegate void ListChangedEventHandler();
         public event ListChangedEventHandler ListChanged;
         public ListBox ObjectListBox;
 
         private List<ItemInfo> _instrumentInfo = new List<ItemInfo>();
         private List<MusicalInstrument> _instruments = new List<MusicalInstrument>();
+        private DataFormattingHandler _formattingHandler;
+
         private int _index = INVALID_INDEX;
 
         public MainWindow()
@@ -204,20 +208,24 @@ namespace Serialization
 
         private void Serialize()
         {
-            var serializer = new Serializer();
+            var path = GetPathToSave();
 
-            serializer.Serialize(_instruments, GetPathToSave());
-
-            OnListChanged();
+            if (path.Length > 0)
+            {
+                SaveDataToFile(path);
+                OnListChanged();
+            }
         }
 
         private void Deserialize()
         {
-            var serializer = new Serializer();
+            var path = GetPathToLoad();
 
-            _instruments = serializer?.Deserialize(GetPathToLoad());
-
-            OnListChanged();
+            if (path.Length > 0)
+            {
+                _instruments = LoadFromFile(path);
+                OnListChanged();
+            }
         }
 
         private string GetPathToLoad()
@@ -247,6 +255,45 @@ namespace Serialization
             foreach (MusicalInstrument instrument in _instruments)
             {
                 ObjectListBox.Items.Add(instrument.Value);
+            }
+        }
+
+        private void SaveDataToFile(string path)
+        {
+            var serializer = new Serializer();
+            var content = serializer.Serialize(_instruments);
+
+            if (_formattingHandler != null)
+            {
+                content = _formattingHandler(content);
+            }
+
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                using (var target = new MemoryStream(content))
+                {
+                    target.CopyTo(fileStream);
+                }   
+            }
+        }
+
+        private List<MusicalInstrument> LoadFromFile(string path)
+        {
+            using (var source = new MemoryStream())
+            {
+                using (var fileStream = new FileStream(path, FileMode.Open))
+                {
+                    fileStream.CopyTo(source);
+                }
+
+                var content = source.ToArray();
+
+                if (_formattingHandler != null)
+                {
+                    content = _formattingHandler(content);
+                }
+
+                return new Serializer().Deserialize(content);
             }
         }
 

@@ -11,7 +11,7 @@ namespace Serialization.Configs
     {
         #region Properties
 
-        private const string FilePath = "..\\..\\Configs\\pluginConfig.xml";
+        private const string _filePath = "..\\..\\Configs\\pluginConfig.xml";
         private readonly XmlDocument _xDocument;
         private readonly XmlElement _xRoot;
 
@@ -19,10 +19,18 @@ namespace Serialization.Configs
 
         #region Methods
 
-        public void Add(string name, string path)
+        public void Add(string type, string name, string path)
         {
-            _xRoot.AppendChild(CreateElement(name, "path", path));
-            _xDocument.Save(FilePath);
+            if (_xRoot.SelectSingleNode(type) == null)
+            {
+                _xRoot.AppendChild(_xDocument.CreateElement(type));
+                _xDocument.Save(_filePath);
+            }
+
+            var node = _xRoot.SelectSingleNode(type);
+
+            node.AppendChild(CreateElement(name, "path", path));
+            _xDocument.Save(_filePath);
         }
 
         private XmlElement CreateElement(string name, string attributeName, string value)
@@ -37,11 +45,18 @@ namespace Serialization.Configs
             return item;
         }
 
-        public List<string> GetPlugins()
+        public List<string> GetPlugins(string type)
         {
-            var nodeList = _xRoot.SelectNodes("*");
+            var nodelist = _xRoot.SelectSingleNode(type)?.ChildNodes;
 
-            return (from XmlElement node in nodeList select node.Name).ToList();
+            if (nodelist != null)
+            {
+                return (from XmlElement node in nodelist select node.Name).ToList();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         #endregion
@@ -52,7 +67,7 @@ namespace Serialization.Configs
         public PluginConfig()
         {
             _xDocument = new XmlDocument();
-            _xDocument.Load(FilePath);
+            _xDocument.Load(_filePath);
             _xRoot = _xDocument.DocumentElement;
         }
 

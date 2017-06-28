@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IContentPlugin.cs" />
+    <Compile Include="IFuntionalPlugin.cs" />
     <Compile Include="IHierarchyPlugin.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

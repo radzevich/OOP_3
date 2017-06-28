@@ -210,7 +210,6 @@ namespace Serialization.Services
                     comboBox.Items.Add(item);
                 }
             }
-            comboBox.SelectedItem = comboBox.Items[0];
 
             if (!comboBox.Items.Contains(AddText))
             {

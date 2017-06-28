@@ -6,6 +6,7 @@ using System.Reflection.Emit;
 using Serialization.Configs;
 using Serialization.Structure;
 using Serialization.Structure.Instruments;
+using PluginInterface;
 
 namespace Serialization.Services
 {
@@ -39,7 +40,10 @@ namespace Serialization.Services
         private void InitializePlugins()
         {
             var pluginConfig = new PluginConfig();
-            var plugins = pluginConfig.GetPlugins();
+            var plugins = pluginConfig.GetPlugins(typeof(IHierarchyPlugin).Name);
+
+            if (plugins == null)
+                return;
 
             foreach (string plugin in plugins)
             {
@@ -143,7 +147,7 @@ namespace Serialization.Services
         {
             var config = new PluginConfig();
 
-            config.Add(name, path);
+            config.Add(typeof(IHierarchyPlugin).Name, name, path);
         }
 
         private Type CreateExtendedClass(string name)

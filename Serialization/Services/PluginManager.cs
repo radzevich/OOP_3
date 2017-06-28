@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using PluginInterface;
 using Serialization.Configs;
 
@@ -25,7 +20,7 @@ namespace Serialization.Services
 
                 if (IsValid(plugin.PublicKey))
                 {
-                    AddToConfig();
+                    AddToConfig(typeof(IHierarchyPlugin).Name);
                     return plugin.Content;
                 }
             }
@@ -40,18 +35,18 @@ namespace Serialization.Services
 
                 if (IsValid(plugin.PublicKey))
                 {
-                    AddToConfig();
+                    AddToConfig(typeof(IContentPlugin).Name);
                     return plugin.Content;
                 }
             }
             return null; 
         }
 
-        private void AddToConfig()
+        private void AddToConfig(string type)
         {
             var pluginConfig = new PluginConfig();
 
-            pluginConfig.Add(_type.Name, _path);
+            pluginConfig.Add(type, _type.Name, _path);
         }
 
         private bool IsValid(string path)

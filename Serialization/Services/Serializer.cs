@@ -13,7 +13,7 @@ namespace Serialization.Services
     {
         private readonly BinaryFormatter _formatter;
 
-        public void Serialize(List<MusicalInstrument> instrumentList, string path)
+        public byte[] Serialize(List<MusicalInstrument> instrumentList)
         {
             var serializableList = new List<List<ItemInfo>>();
 
@@ -22,27 +22,24 @@ namespace Serialization.Services
                 serializableList.Add(ToSerializable(instrument));
             }
 
-            if (path.Length > 0)
+            // получаем поток, куда будем записывать сериализованный объект
+            using (var stream = new MemoryStream())
             {
-                // получаем поток, куда будем записывать сериализованный объект
-                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
-                {
-                    _formatter.Serialize(fs, serializableList);
-                }
+                _formatter.Serialize(stream, serializableList);
+                return stream.ToArray();
             }
         }
 
-        public List<MusicalInstrument> Deserialize(string path)
+        public List<MusicalInstrument> Deserialize(byte[] stream)
         {
             List<List<ItemInfo>> serializableList = null;
-            if (path.Length > 0)
+
+            // десериализация из файла people.dat
+            using (var content = new MemoryStream(stream))
             {
-                // десериализация из файла people.dat
-                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
-                {
-                    serializableList = (List<List<ItemInfo>>)_formatter.Deserialize(fs);
-                }
+                serializableList = (List<List<ItemInfo>>)_formatter.Deserialize(content);
             }
+        
 
             var deserialized = new List<MusicalInstrument>();
 
