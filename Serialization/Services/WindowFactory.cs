@@ -205,10 +205,17 @@ namespace Serialization.Services
         {
             foreach (string item in items)
             {
-                comboBox.Items.Add(item);
+                if (!comboBox.Items.Contains(item))
+                {
+                    comboBox.Items.Add(item);
+                }
             }
+            comboBox.SelectedItem = comboBox.Items[0];
 
-            comboBox.Items.Add(AddText);
+            if (!comboBox.Items.Contains(AddText))
+            {
+                comboBox.Items.Add(AddText);
+            }
         }
 
         public void ReinitializeComboBox(ComboBox comboBox, List<string> path)
@@ -217,11 +224,6 @@ namespace Serialization.Services
             var items = instrumentViewer.GetItems(path);
 
             InitializeComboBox(comboBox, items);
-
-            for (int i = 0; i < comboBox.Items.Count - items.Count; i++)
-            {
-                comboBox.Items.RemoveAt(i);
-            }
         }
 
         #endregion

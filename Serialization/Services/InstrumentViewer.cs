@@ -85,9 +85,9 @@ namespace Serialization.Services
         public virtual List<string> GetItems(List<string> path)
         {
             XmlNode root = GetNodeThroughPath(path);
-            var nodeList = root.SelectNodes("*");
+            XmlNodeList nodeList = root.ChildNodes;
 
-            return (from XmlElement node in nodeList select node.Attributes.GetNamedItem("item").Value).ToList();
+            return (from XmlElement node in nodeList select node.Attributes.GetNamedItem("value").Value).ToList();
         }
 
         public virtual void AddItem(List<string> path, string value)
