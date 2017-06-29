@@ -5,12 +5,6 @@
       <item value="США" />
       <item value="Япония" />
       <item value="Индонезия" />
-      <item value="Германия" />
-      <item value="Индонезия" />
-      <item value="Китай" />
-      <item value="Мексика" />
-      <item value="Россия" />
-      <item value="США" />
       <item value="Япония" />
     </Country>
     <Company name="Производитель">
@@ -30,20 +24,6 @@
   </Electric>
   <Acoustic value="Акустическая гитара">
     <Country name="Страна">
-      <item value="Германия" />
-      <item value="Индонезия" />
-      <item value="Китай" />
-      <item value="Мексика" />
-      <item value="Россия" />
-      <item value="США" />
-      <item value="Япония" />
-      <item value="Германия" />
-      <item value="Индонезия" />
-      <item value="Китай" />
-      <item value="Мексика" />
-      <item value="Россия" />
-      <item value="США" />
-      <item value="Япония" />
     </Country>
     <Company name="Производитель">
     </Company>
@@ -56,18 +36,6 @@
     <Country name="Страна">
       <item value="Германия" />
       <item value="Индонезия" />
-      <item value="Китай" />
-      <item value="Мексика" />
-      <item value="Россия" />
-      <item value="США" />
-      <item value="Япония" />
-      <item value="Германия" />
-      <item value="Индонезия" />
-      <item value="Китай" />
-      <item value="Мексика" />
-      <item value="Россия" />
-      <item value="США" />
-      <item value="Япония" />
     </Country>
     <Company name="Производитель">
     </Company>
@@ -79,12 +47,6 @@
   <Synthesizer value="Синтезатор">
     <Country name="Страна">
       <item value="Германия" />
-      <item value="Индонезия" />
-      <item value="Китай" />
-      <item value="Мексика" />
-      <item value="Россия" />
-      <item value="США" />
-      <item value="Япония" />
     </Country>
     <Company name="Производитель">
     </Company>
@@ -96,6 +58,8 @@
   <Drums value="ударные">
     <Company name="производитель">
       <item value="Германия" />
+      <item value="Япония" />
+      <item value="Германия" />
       <item value="Индонезия" />
       <item value="Китай" />
       <item value="Мексика" />
@@ -103,6 +67,16 @@
       <item value="США" />
       <item value="Япония" />
     </Company>
+    <Country name="страна" />
+    <Configuration name="конфигурация" />
+  </Drums>
+  <Drums value="ударные">
+    <Company name="производитель" />
+    <Country name="страна" />
+    <Configuration name="конфигурация" />
+  </Drums>
+  <Drums value="ударные">
+    <Company name="производитель" />
     <Country name="страна" />
     <Configuration name="конфигурация" />
   </Drums>

@@ -1,23 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Plugins>
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
-  <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
   <IHierarchyPlugin>
-    <Drums path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Drums\bin\Debug\Drums.dll" />
+    <Drums path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Drums\bin\Debug\Drums.dll" name="Drums" />
   </IHierarchyPlugin>
   <IContentPlugin>
-    <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" />
+    <Countries path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Countries\bin\Debug\Countries.dll" name="Countries" />
   </IContentPlugin>
+  <IFuntionalPlugin>
+    <Archiver path="E:\Универ\2 course\ООП\3rd_lab\Serialization\Archiver\bin\Debug\Archiver.dll" name="ZIP-архиватор" />
+  </IFuntionalPlugin>
 </Plugins>

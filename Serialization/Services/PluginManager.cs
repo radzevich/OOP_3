@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using PluginInterface;
 using Serialization.Configs;
+using PluginInterface;
+using Services;
+using Serialization;
 
 namespace Serialization.Services
 {
@@ -11,6 +13,22 @@ namespace Serialization.Services
     {
         private readonly Type _type;
         private readonly string _path;
+
+        public void GetNewFunctionality(ref Formatter handlerTo, ref Formatter handlerFrom)
+        {
+            if (_type.GetInterfaces().Contains(typeof(IFuntionalPlugin)))
+            {
+                var plugin = Activator.CreateInstance(_type) as IFuntionalPlugin;
+
+                if (IsValid(plugin.PublicKey))
+                {
+                    AddToConfig(typeof(IFuntionalPlugin).Name, plugin.Name);
+                    handlerTo.Handler = plugin.TransformTo;
+                    handlerFrom.Handler = plugin.TransformFrom;
+                    AddToConfig(typeof(IFuntionalPlugin).Name, plugin.Name);     
+                }
+            }
+        }
 
         public Dictionary<string, string> GetNewClass()
         {
@@ -20,7 +38,7 @@ namespace Serialization.Services
 
                 if (IsValid(plugin.PublicKey))
                 {
-                    AddToConfig(typeof(IHierarchyPlugin).Name);
+                    AddToConfig(typeof(IHierarchyPlugin).Name, plugin.Name);
                     return plugin.Content;
                 }
             }
@@ -35,18 +53,24 @@ namespace Serialization.Services
 
                 if (IsValid(plugin.PublicKey))
                 {
-                    AddToConfig(typeof(IContentPlugin).Name);
+                    AddToConfig(typeof(IContentPlugin).Name, plugin.Name);
                     return plugin.Content;
                 }
             }
             return null; 
         }
 
-        private void AddToConfig(string type)
+        public string GetPluginName(Type type)
+        {
+            var plugin = Activator.CreateInstance(_type) as IPlugin;
+            return plugin.Name;            
+        }
+
+        private void AddToConfig(string type, string name)
         {
             var pluginConfig = new PluginConfig();
 
-            pluginConfig.Add(type, _type.Name, _path);
+            pluginConfig.Add(type, _type.Name, _path, name);
         }
 
         private bool IsValid(string path)

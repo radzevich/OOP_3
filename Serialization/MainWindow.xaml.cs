@@ -9,6 +9,10 @@ using System.ComponentModel;
 using System.Linq;
 using Serialization.Structure.Instruments;
 using System.IO;
+using Serialization.Configs;
+using PluginInterface;
+using Serialization.Services;
+using Services;
 
 namespace Serialization
 {
@@ -19,14 +23,14 @@ namespace Serialization
     {
         private const int INVALID_INDEX = -1;
 
-        private delegate byte[] DataFormattingHandler(byte[] stream);
         public delegate void ListChangedEventHandler();
         public event ListChangedEventHandler ListChanged;
         public ListBox ObjectListBox;
 
         private List<ItemInfo> _instrumentInfo = new List<ItemInfo>();
         private List<MusicalInstrument> _instruments = new List<MusicalInstrument>();
-        private DataFormattingHandler _formattingHandler;
+        public Formatter _formattingToHandler;
+        public Formatter _formattingFromHandler;
 
         private int _index = INVALID_INDEX;
 
@@ -152,6 +156,13 @@ namespace Serialization
             Deserialize();
         }
 
+        public void SettingsButtonClicked(object sender, EventArgs e)
+        {
+            var window = new AddFuncWindow(ref _formattingToHandler, ref _formattingFromHandler);
+            window.Owner = this;
+            window.Show();
+        }
+
         protected virtual void OnListChanged()
         {
             ListChanged?.Invoke();
@@ -242,8 +253,7 @@ namespace Serialization
         {
             using (var saveFileDialog = new System.Windows.Forms.SaveFileDialog())
             {
-                saveFileDialog.ShowDialog();
-                
+                saveFileDialog.ShowDialog();        
                 return saveFileDialog.FileName;
             }
         }
@@ -263,9 +273,9 @@ namespace Serialization
             var serializer = new Serializer();
             var content = serializer.Serialize(_instruments);
 
-            if (_formattingHandler != null)
+            if (_formattingToHandler != null)
             {
-                content = _formattingHandler(content);
+                content = _formattingToHandler.Handler(content);
             }
 
             using (var fileStream = new FileStream(path, FileMode.Create))
@@ -288,9 +298,9 @@ namespace Serialization
 
                 var content = source.ToArray();
 
-                if (_formattingHandler != null)
+                if (_formattingFromHandler != null)
                 {
-                    content = _formattingHandler(content);
+                    content = _formattingFromHandler.Handler(content);
                 }
 
                 return new Serializer().Deserialize(content);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Serialization.Configs
 {
@@ -19,7 +20,7 @@ namespace Serialization.Configs
 
         #region Methods
 
-        public void Add(string type, string name, string path)
+        public void Add(string type, string typeName, string path, string name)
         {
             if (_xRoot.SelectSingleNode(type) == null)
             {
@@ -29,18 +30,26 @@ namespace Serialization.Configs
 
             var node = _xRoot.SelectSingleNode(type);
 
-            node.AppendChild(CreateElement(name, "path", path));
+            node.AppendChild(CreateElement(typeName, new Dictionary<string, string>
+                                            {
+                                                { path, "path" },
+                                                { name, "name" }
+                                            }));
             _xDocument.Save(_filePath);
         }
 
-        private XmlElement CreateElement(string name, string attributeName, string value)
+        private XmlElement CreateElement(string typeName, Dictionary<string, string> values)
         {
-            var item = _xDocument.CreateElement(name);
-            var itemAttribute = _xDocument.CreateAttribute(attributeName);
-            var attributeText = _xDocument.CreateTextNode(value);
+            var item = _xDocument.CreateElement(typeName);
 
-            itemAttribute.AppendChild(attributeText);
-            item.Attributes.Append(itemAttribute);
+            foreach (KeyValuePair<string, string> pair in values)
+            {
+                var itemAttribute = _xDocument.CreateAttribute(pair.Value);
+                var attributeText = _xDocument.CreateTextNode(pair.Key);
+
+                itemAttribute.AppendChild(attributeText);
+                item.Attributes.Append(itemAttribute);
+            }
 
             return item;
         }
@@ -57,6 +66,41 @@ namespace Serialization.Configs
             {
                 return null;
             }
+        }
+
+        public List<string> GetPaths(string type)
+        {
+            var nodelist = _xRoot.SelectSingleNode(type)?.ChildNodes;
+
+            if (nodelist != null)
+            {
+                return (from XmlElement node in nodelist select node.Attributes.GetNamedItem("path").Value).ToList();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<string> GetNames(string type)
+        {
+            var nodelist = _xRoot.SelectSingleNode(type)?.ChildNodes;
+
+            if (nodelist != null)
+            {
+                return (from XmlElement node in nodelist select node.Attributes.GetNamedItem("name").Value).ToList();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string GetPathThroughName(string type, string name)
+        {
+            var root = _xRoot.SelectSingleNode(type);
+
+            return (from XElement node in root where (string)node.Attribute("path") == name select node).FirstOrDefault().Attribute("name").Value;
         }
 
         #endregion

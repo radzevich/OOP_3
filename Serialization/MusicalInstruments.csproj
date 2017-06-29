@@ -71,11 +71,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddFuncWindow.xaml.cs">
+      <DependentUpon>AddFuncWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddItemWindow.xaml.cs">
       <DependentUpon>AddItemWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Configs\PluginConfig.cs" />
     <Compile Include="Services\ClassBuilder.cs" />
+    <Compile Include="Services\Formatter.cs" />
     <Compile Include="Services\InstrumentViewer.cs" />
     <Compile Include="Configs\WindowConfig.cs" />
     <Compile Include="Services\FileReader.cs" />
@@ -91,6 +95,10 @@
     <Compile Include="Structure\Description.cs" />
     <Compile Include="Structure\Instruments\MusicalInstrument.cs" />
     <Compile Include="Structure\Instruments\Synthesizer.cs" />
+    <Page Include="AddFuncWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddItemWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

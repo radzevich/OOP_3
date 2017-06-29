@@ -147,7 +147,7 @@ namespace Serialization.Services
         {
             var config = new PluginConfig();
 
-            config.Add(typeof(IHierarchyPlugin).Name, name, path);
+            config.Add(typeof(IHierarchyPlugin).Name, name, path, name);
         }
 
         private Type CreateExtendedClass(string name)

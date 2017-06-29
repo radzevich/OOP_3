@@ -3,6 +3,8 @@ using System.Windows;
 using Serialization.Services;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using Serialization.Configs;
+using PluginInterface;
 
 namespace Serialization
 {
@@ -71,6 +73,7 @@ namespace Serialization
 
             this.Close();
         }
+
 
         private string GetPathToLoad()
         {

@@ -1,11 +1,15 @@
 ﻿using PluginInterface;
 using System.IO;
 using System.IO.Compression;
+using System;
 
 namespace Archiver
 {
     public class Archiver : IFuntionalPlugin
     {
+        public string Name => "ZIP-архиватор";
+        public string PublicKey => null;
+
         public byte[] TransformTo(byte[] content)
         {
             using (var target = new MemoryStream())

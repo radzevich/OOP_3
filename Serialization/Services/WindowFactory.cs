@@ -25,7 +25,7 @@ namespace Serialization.Services
             var mainGrid = CreateGrid(parent, "MainGrid", ROW, new List<int> {80, 20});
             var workGrid = CreateGrid(mainGrid, "WorkGrid", COL, new List<int> { 50, 50 });
             var editGrid = CreateGrid(workGrid, "EditGrid", COL, new List<int> { 20, 30 });
-            var buttonsGrid = CreateGrid(mainGrid, "ButtonsGrid", COL, new List<int> { 15, 15, 15, 15 }, 1, 1);
+            var buttonsGrid = CreateGrid(mainGrid, "ButtonsGrid", COL, new List<int> { 15, 15, 15, 15, 15 }, 1, 1);
 
             //Initialization of comboBoxes.
             Initialize(window, editGrid, itemInfo);
@@ -42,8 +42,9 @@ namespace Serialization.Services
             var serializeButton = CreateButton("SerializeButton", "Сериализовать", parent.SerializeButtonClicked, 1, 0);
             var deserializeButton = CreateButton("DeserializeButton", "Десериализовать", parent.DeserializeButtonClicked, 2, 0);
             var removeButton = CreateButton("RemoveButton", "Удалить", parent.RemoveButtonClicked, 3, 0);
+            var settingsButton = CreateButton("SettingsButton", "Настройки", parent.SettingsButtonClicked, 4, 0);
 
-            AddChildren(buttonsGrid, new List<FrameworkElement> { addButton, serializeButton, deserializeButton, removeButton });
+            AddChildren(buttonsGrid, new List<FrameworkElement> { addButton, serializeButton, deserializeButton, removeButton, settingsButton });
             AddChildren(mainGrid, new List<FrameworkElement> { workGrid, buttonsGrid });
             AddChildren(workGrid, new List<FrameworkElement> { listBox, editGrid });
             
